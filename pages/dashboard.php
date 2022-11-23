@@ -116,7 +116,7 @@ if ( !isset($_SESSION["login"])) {
         
         
         <li class="nav-item">
-          <a class="nav-link " href="login.php">
+          <a class="nav-link " href="sessionlogout.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <img src="https://cdn-icons-png.flaticon.com/512/2150/2150376.png" class="text-info text-sm opacity-10" alt="" width="18">
             </div>
