@@ -51,7 +51,7 @@ if ( !isset($_SESSION["login"])) {
         </li>
         
         <li class="nav-item">
-          <a class="nav-link active" href="../pages/dashboard.html">
+          <a class="nav-link active" href="../pages/dashboard.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
             </div>
@@ -295,11 +295,11 @@ if ( !isset($_SESSION["login"])) {
         <div class="col-lg-7 mb-lg-0 mb-4">
           <div class="card z-index-2 h-100">
             <div class="card-header pb-0 pt-3 bg-transparent">
-              <h6 class="text-capitalize">Sales overview</h6>
-              <p class="text-sm mb-0">
+              <h6 class="text-capitalize">Grafik Penjualan</h6>
+              <!-- <p class="text-sm mb-0">
                 <i class="fa fa-arrow-up text-success"></i>
                 <span class="font-weight-bold">4% more</span> in 2021
-              </p>
+              </p> -->
             </div>
             <div class="card-body p-3">
               <div class="chart">
