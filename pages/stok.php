@@ -31,7 +31,7 @@ if ( isset($_POST["submit"])) {
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <title>
-   kASIR PENJUALAN
+   KASIR PENJUALAN
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -175,11 +175,11 @@ if ( isset($_POST["submit"])) {
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
-                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Produk</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Deskrispi</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Harga</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Stok Barang</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
+                     <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Nama Produk</th>
+                      <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Deskrispi</th>
+                      <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Harga</th>
+                      <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">Stok Barang</th>
+                      <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -193,20 +193,20 @@ if ( isset($_POST["submit"])) {
                             </div>
                         </td>
                         <td class="align-middle text-center">
-                          <span class="text-secondary text-xs font-weight-bold"><?= $row["namaproduk"] ?></span>
+                          <span class="text-secondary font-weight-bold"><?= $row["namaproduk"] ?></span>
                         </td>
                       <td>
-                        <p class="align-middle text-center text-sm"><?= $row["deskripsi"] ?></p>
+                        <p class="align-middle text-center "><?= $row["deskripsi"] ?></p>
                       </td>
                       <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold"><?= $row["harga"] ?></span>
+                        <span class="text-secondary font-weight-bold"><?= $row["harga"] ?></span>
                       </td>
                       <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold"><?= $row["stok"] ?></span>
+                        <span class="text-secondary font-weight-bold"><?= $row["stok"] ?></span>
                       </td>
                       <td class="align-middle text-center">
-                        <a href="">Hapus</a>
-                        <a href="">Edit</a>
+                      <button type="submit" class="btn btn-danger btn-sm" name="hapus">Hapus</button>
+                      <button type="button" class="btn btn-success btn-sm">Edit</button>
                         
                       </td>
                     </tr>
