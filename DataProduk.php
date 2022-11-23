@@ -4,7 +4,7 @@ if ( !isset($_SESSION["login"])) {
     header("Location:login.php");
     exit;
 }
-require "../functions/functions.php";
+require "functions/functions.php";
 $dataproduk = query("SELECT *FROM dataproduk");
 
 

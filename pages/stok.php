@@ -205,9 +205,7 @@ if ( isset($_POST["submit"])) {
                         <span class="text-secondary font-weight-bold"><?= $row["stok"] ?></span>
                       </td>
                       <td class="align-middle text-center">
-                      <button type="submit" class="btn btn-danger btn-sm" name="hapus">Hapus</button>
-                      <button type="button" class="btn btn-success btn-sm">Edit</button>
-                        
+                          <a href="../action/ubah.php?id=<?= $row["idproduk"] ?>" class="btn btn-primary btn-smS">Ubah</a>
                       </td>
                     </tr>
                   </tbody>

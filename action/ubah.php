@@ -4,7 +4,7 @@ include "../functions/functions.php";
 $id = $_GET["id"];
 
 //query data mahasiswa berdasarkan id
-$dataproduk = query("SELECT *FROM dataproduk WHERE id =$id")[0];
+$dataproduk = query("SELECT *FROM produk WHERE idproduk =$id")[0];
 //Cek apakah tombol submit sudah diklik 
 if ( isset($_POST["submit"])) {
      
