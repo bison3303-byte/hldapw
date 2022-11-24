@@ -2,8 +2,7 @@
 include '../functions/functions.php';
 $dataproduk = query("SELECT *FROM pelanggan");
 if ( isset($_POST["tambahpelanggan"])) {
-     
-   
+
    //Cek apakah data berhasil ditambahkan atau tidak
    if (tambahpelanggan($_POST) > 0) {
     echo "
