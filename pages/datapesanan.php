@@ -175,14 +175,14 @@ if ( isset($_POST["submit"])) {
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
-              <h6>Data Pesanan</h6>
+              <h6>Data Produk</h6>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID Pesanan</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID Produk</th>
                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jumlah</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
@@ -222,7 +222,7 @@ if ( isset($_POST["submit"])) {
         </div>
       </div>
     <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-      Tambah Pesanan Baru
+      Tambah Produk Baru
     </button>
 
       <footer class="footer pt-3  ">
