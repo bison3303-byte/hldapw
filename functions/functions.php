@@ -41,26 +41,28 @@ function tambahData($data){
 }
 function hapusData ($id){
     global $conn;
-    mysqli_query($conn, "DELETE FROM dataproduk WHERE id = $id");
+    mysqli_query($conn, "DELETE FROM produk WHERE id = $id");
      return mysqli_affected_rows($conn);
 }
 
 function updateData($data){
     global $conn;
     // ambil data dari masing masing elemen dalam form
-    $id = $data["id"];
-    $Tanggal = ["TanggalInput"];
-    $nama = htmlspecialchars($data ["nama"]) ;
-    $kode = htmlspecialchars($data ["kode"]) ;
+    $id = $data["idproduk"];
+    
+    $namaproduk = htmlspecialchars($data ["namaproduk"]) ;
+    $deskripsi = htmlspecialchars($data ["deskripsi"]) ;
     $harga = htmlspecialchars($data ["harga"]) ;
+    $stok = htmlspecialchars($data ["stok"]) ;
 
     //query insert data
-    $query = "UPDATE dataproduk SET 
-            TanggalInput = '$Tanggal',
-            nama = '$nama',
-            kode = '$kode',
-            harga = '$harga'
-            WHERE id = $id 
+    $query = "UPDATE produk SET 
+            
+            namaproduk = '$namaproduk',
+            deskripsi = '$deskripsi',
+            harga = '$harga',
+            stok = '$stok'
+            WHERE idproduk = $id 
     ";
    mysqli_query($conn, $query);
   

@@ -1,7 +1,7 @@
 <?php
 session_start(); 
 include "../functions/functions.php";
-$id = $_GET["id"];
+$id = $_GET["idproduk"];
 
 //query data mahasiswa berdasarkan id
 $dataproduk = query("SELECT *FROM produk WHERE idproduk =$id")[0];
@@ -14,14 +14,14 @@ if ( isset($_POST["submit"])) {
     echo "
     <script>
             alert('data berhasil diupdate!');
-        document.location.href='../pages/DataProduk.php';
+        document.location.href='stok.php';
     </script>
     ";
 } else {
      echo "
     <script>
             alert('data gagal diupdate!');
-        document.location.href='../pages/DataProduk.php';
+        document.location.href='stok.php';
     </script>
     ";
 }
@@ -83,28 +83,25 @@ if ( isset($_POST["submit"])) {
           <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
             <div class="card z-index-0">
               <div class="card-header text-center pt-4">
-                <h5>Input Data</h5>
+                <h5>Ubah Data</h5>
               </div>
 
               <div class="card-body">
                 <form role="form" method="POST" action="">
                     <div class="mb-3">
-                      <input type="hidden" name="id" class="form-control" value="<?= $dataproduk["idproduk"]; ?>" aria-label="kode" />
+                      <input type="hidden" name="idproduk" class="form-control" value="<?= $dataproduk["idproduk"]; ?>" aria-label="kode" />
                     </div>
                     <div class="mb-3">
-                      <input type="hidden"  name="TanggalInput" class="form-control" value="<?php echo date("d-m-Y"); ?>" aria-label="kode" />
-                    </div>
-                    <div class="mb-3">
-                      <input type="text" autocomplete="off" name="kode" class="form-control" aria-label="kode" placeholder="Kode Produk" value="<?= $dataproduk["namaproduk"]; ?>"/>
+                      <input type="text" autocomplete="off" name="namaproduk" class="form-control" aria-label="kode" placeholder="Nama Produk" value="<?= $dataproduk["namaproduk"]; ?>"/>
                     </div>
                   <div class="mb-3">
-                    <input type="text" autocomplete="off" class="form-control" placeholder="Nama Produk" name="nama" aria-label="Name" value="<?= $dataproduk["deskripsi"]; ?>"/>
+                    <input type="text" autocomplete="off" class="form-control" placeholder="Nama Produk" name="deskripsi" aria-label="Name" value="<?= $dataproduk["deskripsi"]; ?>"/>
                   </div>
                   <div class="mb-3">
                     <input type="text" autocomplete="off" name="harga" class="form-control" placeholder="Harga Produk" aria-label="harga" value="<?= $dataproduk["harga"]; ?>"/>
                   </div>
                   <div class="mb-3">
-                    <input type="text" autocomplete="off" name="harga" class="form-control" placeholder="Stok Produk" aria-label="stok" value="<?= $dataproduk["stok"]; ?>"/>
+                    <input type="text" autocomplete="off" name="stok" class="form-control" placeholder="Stok Produk" aria-label="stok" value="<?= $dataproduk["stok"]; ?>"/>
                   </div>
                   
                   
