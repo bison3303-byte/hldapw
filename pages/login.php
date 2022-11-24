@@ -1,31 +1,5 @@
-<?php 
-session_start();
-require "../functions/functions.php";
-if (isset ($_POST["login"])) {
-$username = $_POST["username"];
-$password = $_POST["password"];
-$result = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username' AND password = '$password'");
 
-  $cek = mysqli_num_rows($result);
-      if($cek > 0){
-        $data=mysqli_fetch_assoc($result);
-          if($data['jabatan'] == "admin" ){
-            $_SESSION['username'] = $username;
-            $_SESSION['jabatan'] = "admin";
-            header("location:sidenavigationadmin.php");
-          }
-          else if ($data['jabatan'] == "kasir"){
-            $_SESSION['username'] = $username;
-            $_SESSION['jabatan'] = "kasir";
-            header("location:sidenavigationkasir.php");
-          } else {
-            header("location:login.php?pesan=gagallogin");
-          }
-        
-        }
-}
 
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -102,7 +76,7 @@ $result = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username' A
                   <p class="mb-0">Enter your username and password to sign in</p>
                 </div>
                 <div class="card-body">
-                  <form role="form" method="post" action="">
+                  <form role="form" method="post" action="sessionlogin.php">
                     <div class="mb-3">
                       <input type="text" class="form-control form-control-lg" placeholder="Username" aria-label="username" name="username">
                     </div>
@@ -122,7 +96,7 @@ $result = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username' A
             </div>
             <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 end-0 text-center justify-content-center flex-column">
               <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden" style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signin-ill.jpg');
-          background-size: cover;">
+                  background-size: cover;">
                 <span class="mask bg-gradient-primary opacity-6"></span>
                 <h4 class="mt-5 text-white font-weight-bolder position-relative">"Selamat Datang "</h4>
                 <p class="text-white position-relative">Silahkan Login untuk masuk ke sistem</p>
