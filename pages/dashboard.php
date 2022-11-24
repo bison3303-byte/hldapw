@@ -1,28 +1,22 @@
-<?php 
+<?php
 session_start();
 require "../functions/functions.php";
-// if ( !isset($_SESSION["login"])) {
-//     header("Location:login.php");
-//     exit;
-// }
-if($_SESSION['nama']!=""){
+
+if (!isset($_SESSION["nama"])) {
+  header("Location:login.php");
+  exit;
+}
+
+if ($_SESSION['nama'] != "") {
   $username = $_SESSION['username'];
   $level = $_SESSION['level'];
-}else {
+} else {
   header("location: login.php");
 }
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- ngetes -->
-<!-- hallo -->
-<!-- apaaamn -->
-
-<!-- okeeyyyyyyyyyyyyyyyyyy -->
-
-
 
 <head>
   <meta charset="utf-8" />
@@ -55,18 +49,15 @@ if($_SESSION['nama']!=""){
       </a>
     </div>
     <hr class="horizontal dark mt-0">
-    <?php 
-         
+    <?php
+    // cek apakah yang mengakses halaman ini sudah login
+    if ($level == 'admin') {
+      include 'sidenavigationadmin.php';
+    } else {
+      include 'sidenavigationkasir.php';
+    }
+    ?>
 
-         // cek apakah yang mengakses halaman ini sudah login
-         if($level == 'admin'){
-           include 'sidenavigationadmin.php';
-         } else {
-           include 'sidenavigationkasir.php';
-         }
-
-       ?>
-    
   </aside>
   <main class="main-content position-relative border-radius-lg ">
     <!-- Navbar -->
@@ -107,7 +98,7 @@ if($_SESSION['nama']!=""){
                 <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
               </a>
             </li>
-            
+
           </ul>
         </div>
       </div>
@@ -140,7 +131,7 @@ if($_SESSION['nama']!=""){
             </div>
           </div>
         </div>
-        
+
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-body p-3">
@@ -167,65 +158,65 @@ if($_SESSION['nama']!=""){
           </div>
 
 
-          
+
 
 
 
         </div>
-        
+
       </div>
       <div class="row mt-4">
-       <!-- enable for full width graph -->
+        <!-- enable for full width graph -->
         <!-- <div class="col-lg-7 mb-lg-0 mb-4"> -->
-          <div class="card z-index-2 h-100">
-            <div class="card-header pb-0 pt-3 bg-transparent">
-              <h6 class="text-capitalize">Grafik Penjualan</h6>
-              <!-- <p class="text-sm mb-0">
+        <div class="card z-index-2 h-100">
+          <div class="card-header pb-0 pt-3 bg-transparent">
+            <h6 class="text-capitalize">Grafik Penjualan</h6>
+            <!-- <p class="text-sm mb-0">
                 <i class="fa fa-arrow-up text-success"></i>
                 <span class="font-weight-bold">4% more</span> in 2021
               </p> -->
-            </div>
-            <div class="card-body p-3">
-              <div class="chart">
-                <canvas id="chart-line" class="chart-canvas" height="450"></canvas>
-              </div>
+          </div>
+          <div class="card-body p-3">
+            <div class="chart">
+              <canvas id="chart-line" class="chart-canvas" height="450"></canvas>
             </div>
           </div>
         </div>
-        
       </div>
-      
-      
 
-      <footer class="footer pt-3  ">
-        <div class="container-fluid">
-          <div class="row align-items-center justify-content-lg-between">
-            <div class="col-lg-6 mb-lg-0 mb-4">
-              <div class="copyright text-center text-sm text-muted text-lg-start">
-                © <script>
-                  document.write(new Date().getFullYear())
-                </script>,
-                made by
-                <a href=" " class="font-weight-bold" target="_blank">Kelompok 4</a>
-                pemrograman web
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
-                </li>
-              </ul>
+    </div>
+
+
+
+    <footer class="footer pt-3  ">
+      <div class="container-fluid">
+        <div class="row align-items-center justify-content-lg-between">
+          <div class="col-lg-6 mb-lg-0 mb-4">
+            <div class="copyright text-center text-sm text-muted text-lg-start">
+              © <script>
+                document.write(new Date().getFullYear())
+              </script>,
+              made by
+              <a href=" " class="font-weight-bold" target="_blank">Kelompok 4</a>
+              pemrograman web
             </div>
           </div>
+          <div class="col-lg-6">
+            <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+              <li class="nav-item">
+                <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
+              </li>
+            </ul>
+          </div>
         </div>
-      </footer>
+      </div>
+    </footer>
     </div>
   </main>
-  
+
   <!--   Core JS Files   -->
   <script src="../assets/js/core/popper.min.js"></script>
   <script src="../assets/js/core/bootstrap.min.js"></script>

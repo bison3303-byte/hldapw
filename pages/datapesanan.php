@@ -1,25 +1,26 @@
-<?php 
+<?php
+session_start();
 include '../functions/functions.php';
+
 $dataproduk = query("SELECT *FROM produk");
-if ( isset($_POST["submit"])) {
-     
-   
-   //Cek apakah data berhasil ditambahkan atau tidak
-   if (tambahData($_POST) > 0) {
+
+if (isset($_POST["submit"])) {
+  //Cek apakah data berhasil ditambahkan atau tidak
+  if (tambahData($_POST) > 0) {
     echo "
     <script>
             alert('data berhasil ditambahkan!');
         document.location.href='stok.php';
     </script>
     ";
-} else {
-     echo "
+  } else {
+    echo "
     <script>
             alert('data gagal ditambahkan!');
         document.location.href='stok.php';
     </script>
     ";
-}
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -31,7 +32,7 @@ if ( isset($_POST["submit"])) {
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <title>
-   KASIR PENJUALAN
+    KASIR PENJUALAN
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -56,66 +57,13 @@ if ( isset($_POST["submit"])) {
       </a>
     </div>
     <hr class="horizontal dark mt-0">
-    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link " href="dashboard.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Dashboard</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Data Barang</span>
-          </a>
-        </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link " href="Datapenjualan.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Data Penjualan</span>
-          </a>
-        </li> -->
-        <li class="nav-item">
-          <a class="nav-link " href="datapesanan.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Data Penjualan</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="datapelanggan.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Data Pelanggan</span>
-          </a>
-        </li>
-        
-        
-        <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
-        </li>
-        
-        
-        <li class="nav-item">
-          <a class="nav-link " href="login.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-collection text-info text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Log out</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-    
+    <?php
+    if ($_SESSION['level'] == 'admin') {
+      include 'sidenavigationadmin.php';
+    } else {
+      include 'sidenavigationkasir.php';
+    }
+    ?>
   </aside>
   <main class="main-content position-relative border-radius-lg ">
     <!-- Navbar -->
@@ -131,10 +79,10 @@ if ( isset($_POST["submit"])) {
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
             <form action="" method="post">
-                <div class="input-group">
-                  <button type="submit" name="cari" class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></button>
-                  <input type="text" class="form-control" placeholder="Search..." autocomplete="off" name="keyword" autofocus>
-                </div>
+              <div class="input-group">
+                <button type="submit" name="cari" class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></button>
+                <input type="text" class="form-control" placeholder="Search..." autocomplete="off" name="keyword" autofocus>
+              </div>
 
             </form>
           </div>
@@ -163,7 +111,7 @@ if ( isset($_POST["submit"])) {
               <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa fa-bell cursor-pointer"></i>
               </a>
-              
+
             </li>
           </ul>
         </div>
@@ -183,7 +131,7 @@ if ( isset($_POST["submit"])) {
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID Produk</th>
-                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jumlah</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
 
@@ -191,59 +139,59 @@ if ( isset($_POST["submit"])) {
                   </thead>
                   <tbody>
                     <?php $i = 1; ?>
-                        <?php foreach ($dataproduk as $row ) :  ?>                        
-                    <tr>
+                    <?php foreach ($dataproduk as $row) :  ?>
+                      <tr>
                         <td>
-                            <div class="d-flex flex-column justify-content-center">
-                                <h5 class="mb-0 text-sm"><?= $i;?></h5>
-                            </div>
-                            </div>
-                        </td>
-                        <td class="align-middle text-center">
-                          <span class="text-secondary text-xs font-weight-bold"><?= $row["namaproduk"] ?></span>
-                        </td>
-                      <td>
-                        <p class="align-middle text-center text-sm"><?= $row["deskripsi"] ?></p>
-                      </td>
-                      
-                      <td class="align-middle text-center">
-                        <a href="">Hapus</a>
-                        <a href="">Edit</a>
-                        
-                      </td>
-                    </tr>
-                  </tbody>
-                 <?php $i++; ?>
-                 <?php endforeach; ?>
-                </table>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h5 class="mb-0 text-sm"><?= $i; ?></h5>
+                          </div>
               </div>
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-secondary text-xs font-weight-bold"><?= $row["namaproduk"] ?></span>
+              </td>
+              <td>
+                <p class="align-middle text-center text-sm"><?= $row["deskripsi"] ?></p>
+              </td>
+
+              <td class="align-middle text-center">
+                <a href="">Hapus</a>
+                <a href="">Edit</a>
+
+              </td>
+              </tr>
+              </tbody>
+              <?php $i++; ?>
+            <?php endforeach; ?>
+            </table>
             </div>
           </div>
         </div>
       </div>
+    </div>
     <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
       Tambah Produk Baru
     </button>
 
-      <footer class="footer pt-3  ">
-        <div class="container-fluid">
-          <div class="row align-items-center justify-content-lg-between">
-            <div class="col-lg-6 mb-lg-0 mb-4">
-              <div class="copyright text-center text-sm text-muted text-lg-start">
-                © <script>
-                  document.write(new Date().getFullYear())
-                </script>,
-                made with <a href=" " class="font-weight-bold" target="_blank">Kelompok 4</a>
-                for a better web.
-              </div>
+    <footer class="footer pt-3  ">
+      <div class="container-fluid">
+        <div class="row align-items-center justify-content-lg-between">
+          <div class="col-lg-6 mb-lg-0 mb-4">
+            <div class="copyright text-center text-sm text-muted text-lg-start">
+              © <script>
+                document.write(new Date().getFullYear())
+              </script>,
+              made with <a href=" " class="font-weight-bold" target="_blank">Kelompok 4</a>
+              for a better web.
             </div>
-            
           </div>
+
         </div>
-      </footer>
+      </div>
+    </footer>
     </div>
   </main>
-  
+
   <!--   Core JS Files   -->
   <script src="../assets/js/core/popper.min.js"></script>
   <script src="../assets/js/core/bootstrap.min.js"></script>
@@ -275,26 +223,25 @@ if ( isset($_POST["submit"])) {
       </div>
 
       <form action="" method="post">
-      <div class="modal-body">
-        Pilih Pelanggan
-        <select name="idpelanggan">
-        <?php 
-        $getpelanggan = mysqli_query($conn, "SELECT *FROM pelanggan");
-        while ($pl=mysqli_fetch_array($getpelanggan)) {
-          
-        }
-        
-        ?>
+        <div class="modal-body">
+          Pilih Pelanggan
+          <select name="idpelanggan">
+            <?php
+            $getpelanggan = mysqli_query($conn, "SELECT *FROM pelanggan");
+            while ($pl = mysqli_fetch_array($getpelanggan)) {
+            }
+
+            ?>
 
 
-        </select>
-      </div>
+          </select>
+        </div>
 
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-success" data-bs-dismiss="modal" name="submit">Input</button>
-        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-      </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success" data-bs-dismiss="modal" name="submit">Input</button>
+          <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
       </form>
     </div>
   </div>
