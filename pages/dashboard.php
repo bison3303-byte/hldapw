@@ -253,6 +253,8 @@ if ( !isset($_SESSION["login"])) {
         
       </div>
       
+      
+
       <footer class="footer pt-3  ">
         <div class="container-fluid">
           <div class="row align-items-center justify-content-lg-between">
