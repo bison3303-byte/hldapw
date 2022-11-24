@@ -48,7 +48,7 @@ function hapusData ($id){
 function updateData($data){
     global $conn;
     // ambil data dari masing masing elemen dalam form
-    $id = $data["idproduk"];
+    $id = $data["id"];
     
     $namaproduk = htmlspecialchars($data ["namaproduk"]) ;
     $deskripsi = htmlspecialchars($data ["deskripsi"]) ;
@@ -62,7 +62,7 @@ function updateData($data){
             deskripsi = '$deskripsi',
             harga = '$harga',
             stok = '$stok'
-            WHERE idproduk = $id 
+            WHERE id = $id 
     ";
    mysqli_query($conn, $query);
   

@@ -174,7 +174,7 @@ if ( isset($_POST["submit"])) {
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id Barang</th>
                      <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Nama Produk</th>
                       <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Deskrispi</th>
                       <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Harga</th>
@@ -205,7 +205,9 @@ if ( isset($_POST["submit"])) {
                         <span class="text-secondary font-weight-bold"><?= $row["stok"] ?></span>
                       </td>
                       <td class="align-middle text-center">
-                          <a href="../action/ubah.php?id=<?= $row["idproduk"] ?>" class="btn btn-primary btn-smS">Ubah</a>
+                          <a href="../action/ubah.php?id=<?= $row["id"] ?>" class="btn btn-primary btn-smS">Ubah</a>
+                          <a href="../action/hapus.php?id=<?= $row["id"] ?>" class="btn btn-primary btn-smS">Hapus</a>
+
                       </td>
                     </tr>
                   </tbody>

@@ -5,14 +5,14 @@ if (hapusData($id) > 0) {
     echo "
     <script>
             alert('data berhasil dihapus!');
-        document.location.href='../pages/DataProduk.php';
+        document.location.href='../pages/stok.php';
     </script>
     ";
 } else {
      echo "
     <script>
             alert('data gagal dihapus!');
-        document.location.href='DataProduk.php';
+        document.location.href='../pages/stok.php';
     </script>
     ";
 }

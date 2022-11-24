@@ -1,10 +1,10 @@
 <?php
 session_start(); 
 include "../functions/functions.php";
-$id = $_GET["idproduk"];
+$idproduk = $_GET["id"];
 
 //query data mahasiswa berdasarkan id
-$dataproduk = query("SELECT *FROM produk WHERE idproduk =$id")[0];
+$dataproduk = query("SELECT *FROM produk WHERE id =$idproduk")[0];
 //Cek apakah tombol submit sudah diklik 
 if ( isset($_POST["submit"])) {
      
@@ -14,14 +14,14 @@ if ( isset($_POST["submit"])) {
     echo "
     <script>
             alert('data berhasil diupdate!');
-        document.location.href='stok.php';
+        document.location.href='../pages/stok.php';
     </script>
     ";
 } else {
      echo "
     <script>
             alert('data gagal diupdate!');
-        document.location.href='stok.php';
+        document.location.href='../pages/stok.php';
     </script>
     ";
 }
@@ -36,7 +36,7 @@ if ( isset($_POST["submit"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
     <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
-    <title>Argon Dashboard 2 by Creative Tim</title>
+    <title>PT BATIK MUTIARA</title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Nucleo Icons -->
@@ -53,7 +53,7 @@ if ( isset($_POST["submit"])) {
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent mt-4">
       <div class="container">
-        <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 text-white" href="../pages/dashboard.html"> Argon Dashboard 2 </a>
+        <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 text-white" href=""> PT BATIK MUTIARA </a>
         <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon mt-2">
             <span class="navbar-toggler-bar bar1"></span>
@@ -89,13 +89,13 @@ if ( isset($_POST["submit"])) {
               <div class="card-body">
                 <form role="form" method="POST" action="">
                     <div class="mb-3">
-                      <input type="hidden" name="id" class="form-control" value="<?= $dataproduk["idproduk"]; ?>" aria-label="kode" />
+                      <input type="hidden" name="id" class="form-control" value="<?= $dataproduk["id"]; ?>" aria-label="id" />
                     </div>
                     <div class="mb-3">
                       <input type="text" autocomplete="off" name="namaproduk" class="form-control" aria-label="kode" placeholder="Nama Produk" value="<?= $dataproduk["namaproduk"]; ?>"/>
                     </div>
                   <div class="mb-3">
-                    <input type="text" autocomplete="off" class="form-control" placeholder="Nama Produk" name="deskripsi" aria-label="Name" value="<?= $dataproduk["deskripsi"]; ?>"/>
+                    <input type="text" autocomplete="off" class="form-control" placeholder="Deskripsi" name="deskripsi" aria-label="Name" value="<?= $dataproduk["deskripsi"]; ?>"/>
                   </div>
                   <div class="mb-3">
                     <input type="text" autocomplete="off" name="harga" class="form-control" placeholder="Harga Produk" aria-label="harga" value="<?= $dataproduk["harga"]; ?>"/>
