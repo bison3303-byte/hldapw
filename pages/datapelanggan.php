@@ -31,7 +31,7 @@ if ( isset($_POST["tambahpelanggan"])) {
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <title>
-   kASIR PENJUALAN
+   KASIR PENJUALAN
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -74,14 +74,14 @@ if ( isset($_POST["tambahpelanggan"])) {
             <span class="nav-link-text ms-1">Data Barang</span>
           </a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link " href="Datapenjualan.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Data Penjualan</span>
           </a>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a class="nav-link " href="datapesanan.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
