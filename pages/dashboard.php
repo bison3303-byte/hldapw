@@ -47,9 +47,6 @@ if ( !isset($_SESSION["login"])) {
         <span class="ms-1 font-weight-bold">PT BATIK MUTIARA</span>
       </a>
     </div>
-
-
-    
     <hr class="horizontal dark mt-0">
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
@@ -73,7 +70,8 @@ if ( !isset($_SESSION["login"])) {
             </div>
             <span class="nav-link-text ms-1">Data Produk</span>
           </a>
-          <li class="nav-item">
+        </li>
+        <li class="nav-item">
           <a class="nav-link " href="datapesanan.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
