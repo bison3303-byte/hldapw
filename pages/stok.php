@@ -98,7 +98,7 @@ if ( isset($_POST["submit"])) {
         
         
         <li class="nav-item">
-          <a class="nav-link " href="login.php">
+          <a class="nav-link " href="sessionlogout.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-collection text-info text-sm opacity-10"></i>
             </div>
@@ -205,7 +205,7 @@ if ( isset($_POST["submit"])) {
                         <span class="text-secondary font-weight-bold"><?= $row["stok"] ?></span>
                       </td>
                       <td class="align-middle text-center">
-                          <a href="../action/ubah.php?id=<?= $row["id"] ?>" class="btn btn-primary btn-smS">Ubah</a>
+                          <a href="../action/ubah.php?id=<?= $row["id"] ?>" class="btn btn-primary">Ubah</a>
                           <a href="../action/hapus.php?id=<?= $row["id"] ?>" class="btn btn-primary btn-smS">Hapus</a>
 
                       </td>
@@ -275,7 +275,7 @@ if ( isset($_POST["submit"])) {
 
       <form action="" method="post">
       <div class="modal-body">
-        <input type="text" class="form-control mt-2" name="namaproduk" placeholder="Nama Produk">
+        <input type="text" class="form-control mt-2" name="namaproduk" placeholder="Nama Produk" >
         <input type="text" class="form-control mt-2" name="deskripsi" placeholder="deskripsi">
         <input type="num" class="form-control mt-2" name="harga" placeholder="harga">
         <input type="num" class="form-control mt-2" name="stok" placeholder="stok">
@@ -284,6 +284,33 @@ if ( isset($_POST["submit"])) {
       <!-- Modal footer -->
       <div class="modal-footer">
         <button type="submit" class="btn btn-success" data-bs-dismiss="modal" name="submit">Input</button>
+        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="myModalUpdate">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Update Produk</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <form action="" method="post">
+      <div class="modal-body">
+        <input type="text" class="form-control mt-2" name="namaproduk" placeholder="Nama Produk" value="<?= $row["namaproduk"] ?>">
+        <input type="text" class="form-control mt-2" name="deskripsi" placeholder="deskripsi">
+        <input type="num" class="form-control mt-2" name="harga" placeholder="harga">
+        <input type="num" class="form-control mt-2" name="stok" placeholder="stok">
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success" data-bs-dismiss="modal" name="update">Update</button>
         <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
       </div>
       </form>

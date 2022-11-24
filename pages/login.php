@@ -2,30 +2,28 @@
 session_start();
 require "../functions/functions.php";
 if (isset ($_POST["login"])) {
-    $username = $_POST["username"];
-    $password = $_POST["password"];
+$username = $_POST["username"];
+$password = $_POST["password"];
+$result = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username' AND password = '$password'");
 
-    $result = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username'");
-
-    //cek username
-    if (mysqli_num_rows($result) === 1) {
+  $cek = mysqli_num_rows($result);
+      if($cek > 0){
+        $data=mysqli_fetch_assoc($result);
+          if($data['jabatan'] == "admin" ){
+            $_SESSION['username'] = $username;
+            $_SESSION['jabatan'] = "admin";
+            header("location:sidenavigationadmin.php");
+          }
+          else if ($data['jabatan'] == "kasir"){
+            $_SESSION['username'] = $username;
+            $_SESSION['jabatan'] = "kasir";
+            header("location:sidenavigationkasir.php");
+          } else {
+            header("location:login.php?pesan=gagallogin");
+          }
         
-        //cek password
-        $row = mysqli_fetch_assoc($result);
-        if (password_verify($password, $row["password"])) {
-            //set session
-            $_SESSION["login"] = true;
-
-
-            header("Location: dashboard.php");
-            exit;
         }
-
-    
-    }
-    $error = true;
 }
-
 
 ?>
 <!DOCTYPE html>
@@ -58,7 +56,7 @@ if (isset ($_POST["login"])) {
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg blur border-radius-lg top-0 z-index-3 shadow position-absolute mt-4 py-2 start-0 end-0 mx-4">
           <div class="container-fluid">
-            <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="../pages/login.php">
+            <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="login.php">
               PT BATIK MUTIARA
             </a>
             <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,7 +70,7 @@ if (isset ($_POST["login"])) {
               <ul class="navbar-nav mx-auto">
                 
                 <li class="nav-item">
-                  <a class="nav-link me-2" href="../pages/login.php">
+                  <a class="nav-link me-2" href="login.php">
                     <i class="fas fa-key opacity-6 text-dark me-1"></i>
                     Login
                   </a>
@@ -100,7 +98,7 @@ if (isset ($_POST["login"])) {
             <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column mx-lg-0 mx-auto">
               <div class="card card-plain">
                 <div class="card-header pb-0 text-start">
-                  <h4 class="font-weight-bolder">Sign In</h4>
+                  <h4 class="font-weight-bolder">Login</h4>
                   <p class="mb-0">Enter your username and password to sign in</p>
                 </div>
                 <div class="card-body">
@@ -111,12 +109,9 @@ if (isset ($_POST["login"])) {
                     <div class="mb-3">
                       <input type="password" class="form-control form-control-lg" placeholder="Password" aria-label="Password" name="password">
                     </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="rememberMe">
-                      <label class="form-check-label" for="rememberMe">Remember me</label>
-                    </div>
+                  
                     <div class="text-center">
-                      <button type="submit" name="login" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Sign in</button>
+                      <button type="submit" name="login" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Login</button>
                     </div>
                   </form>
                 </div>
