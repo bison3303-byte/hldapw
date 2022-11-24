@@ -89,20 +89,24 @@ if ( isset($_POST["submit"])) {
               <div class="card-body">
                 <form role="form" method="POST" action="">
                     <div class="mb-3">
-                      <input type="hidden" name="id" class="form-control" value="<?= $dataproduk["id"]; ?>" aria-label="kode" />
+                      <input type="hidden" name="id" class="form-control" value="<?= $dataproduk["idproduk"]; ?>" aria-label="kode" />
                     </div>
                     <div class="mb-3">
                       <input type="hidden"  name="TanggalInput" class="form-control" value="<?php echo date("d-m-Y"); ?>" aria-label="kode" />
                     </div>
                     <div class="mb-3">
-                      <input type="text" autocomplete="off" name="kode" class="form-control" aria-label="kode" placeholder="Kode Produk" value="<?= $dataproduk["kode"]; ?>"/>
+                      <input type="text" autocomplete="off" name="kode" class="form-control" aria-label="kode" placeholder="Kode Produk" value="<?= $dataproduk["namaproduk"]; ?>"/>
                     </div>
                   <div class="mb-3">
-                    <input type="text" autocomplete="off" class="form-control" placeholder="Nama Produk" name="nama" aria-label="Name" value="<?= $dataproduk["nama"]; ?>"/>
+                    <input type="text" autocomplete="off" class="form-control" placeholder="Nama Produk" name="nama" aria-label="Name" value="<?= $dataproduk["deskripsi"]; ?>"/>
                   </div>
                   <div class="mb-3">
                     <input type="text" autocomplete="off" name="harga" class="form-control" placeholder="Harga Produk" aria-label="harga" value="<?= $dataproduk["harga"]; ?>"/>
                   </div>
+                  <div class="mb-3">
+                    <input type="text" autocomplete="off" name="harga" class="form-control" placeholder="Stok Produk" aria-label="stok" value="<?= $dataproduk["stok"]; ?>"/>
+                  </div>
+                  
                   
                   <div class="text-center">
                     <button type="submit" name="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Update Data</button>
