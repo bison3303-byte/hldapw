@@ -31,7 +31,7 @@ if ( isset($_POST["submit"])) {
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <title>
-   kASIR PENJUALAN
+   KASIR PENJUALAN
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -233,8 +233,7 @@ if ( isset($_POST["submit"])) {
                 © <script>
                   document.write(new Date().getFullYear())
                 </script>,
-                made with <i class="fa fa-heart"></i> by
-                <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Kelompok 4</a>
+                made with <a href=" " class="font-weight-bold" target="_blank">Kelompok 4</a>
                 for a better web.
               </div>
             </div>
