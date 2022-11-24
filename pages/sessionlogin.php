@@ -1,61 +1,26 @@
 <?php 
-// mengaktifkan session pada php
 session_start();
-
-// menghubungkan php dengan koneksi database
 include '../functions/functions.php';
-
-// menangkap data yang dikirim dari form login
 $username = $_POST['username'];
-$password = md5($_POST['password']);
+$password =md5($_POST['password']);
+$query = mysqli_query($conn, "SELECT * FROM user WHERE 
+        username = '$username' AND
+        password = '$password' ");
 
+        $cek = mysqli_num_rows($query);
+        $data = mysqli_fetch_array($query);
 
-// menyeleksi data user dengan username dan password yang sesuai
-$login = mysqli_query($conn,"SELECT *FROM user where username='$username' and password='$password'");
-// menghitung jumlah data yang ditemukan
-$cek = mysqli_num_rows($login);
-
-// cek apakah username dan password di temukan pada database
-if($cek > 0){
-
-	$data = mysqli_fetch_assoc($login);
-
-	// cek jika user login sebagai admin
-	if($data['level']=="admin"){
-
-		// buat session login dan username
-		$_SESSION['username'] = $username;
-		$_SESSION['level'] = "admin";
-		// alihkan ke halaman dashboard admin
-		header("location:sidenavigationadmin.php");
-
-	// cek jika user login sebagai pegawai
-	}else if($data['level']=="kasir"){
-		// buat session login dan username
-		$_SESSION['username'] = $username;
-		$_SESSION['level'] = "kasir";
-		// alihkan ke halaman dashboard pegawai
-		header("location:sidenavigationkasir.php");
-
-	// cek jika user login sebagai pengurus
-	}else if($data['level']=="pelanggan"){
-		// buat session login dan username
-		$_SESSION['username'] = $username;
-		$_SESSION['level'] = "pelanggan";
-		// alihkan ke halaman dashboard pengurus
-		header("location:sidenavigationpelanggan.php");
-
-	}else{
-
-		// alihkan ke halaman login kembali
-		header("location:index.php?pesan=gagal");
-	}
-
-	
-}else{
-	header("location:index.php?pesan=gagal");
+        if ($cek) {
+            $_SESSION['nama'] = $data ['nama'];
+            $_SESSION['username']= $username;
+            $_SESSION['level']=$data ['level'];
+?>
+Anda berhasil login. Silahkan menuju <a href="dashboard.php">HALAMAN HOME</a><br><br>
+<a href="session_logout.php">Log out</a>
+<?php 
+}else {
+?>
+Anda gagal login. Silahkan <a href="login.php">Login Kembali</a>
+<?php 
 }
-
-
-
 ?>

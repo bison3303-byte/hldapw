@@ -2,8 +2,7 @@
 include '../functions/functions.php';
 $dataproduk = query("SELECT *FROM produk");
 if ( isset($_POST["submit"])) {
-     
-   
+
    //Cek apakah data berhasil ditambahkan atau tidak
    if (tambahData($_POST) > 0) {
     echo "
@@ -205,8 +204,8 @@ if ( isset($_POST["submit"])) {
                         <span class="text-secondary font-weight-bold"><?= $row["stok"] ?></span>
                       </td>
                       <td class="align-middle text-center">
-                          <a href="../action/ubah.php?id=<?= $row["id"] ?>" class="btn btn-primary">Ubah</a>
-                          <a href="../action/hapus.php?id=<?= $row["id"] ?>" class="btn btn-primary btn-smS">Hapus</a>
+                      <a href="../action/ubah.php?id=<?= $row ["id"] ?>" class="btn btn-danger btn-sm" >Ubah</a>
+                      <a href="../action/hapus.php?id=<?= $row ["id"] ?>" class="btn btn-success btn-sm" onclick="return confirm ('yakin?');">Hapus</a>
 
                       </td>
                     </tr>
@@ -290,32 +289,6 @@ if ( isset($_POST["submit"])) {
     </div>
   </div>
 </div>
-<div class="modal fade" id="myModalUpdate">
-  <div class="modal-dialog">
-    <div class="modal-content">
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Update Produk</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <form action="" method="post">
-      <div class="modal-body">
-        <input type="text" class="form-control mt-2" name="namaproduk" placeholder="Nama Produk" value="<?= $row["namaproduk"] ?>">
-        <input type="text" class="form-control mt-2" name="deskripsi" placeholder="deskripsi">
-        <input type="num" class="form-control mt-2" name="harga" placeholder="harga">
-        <input type="num" class="form-control mt-2" name="stok" placeholder="stok">
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-success" data-bs-dismiss="modal" name="update">Update</button>
-        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
 
 </html>

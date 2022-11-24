@@ -20,6 +20,9 @@ if ( isset($_POST["tambahpelanggan"])) {
     ";
 }
 }
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -210,9 +213,9 @@ if ( isset($_POST["tambahpelanggan"])) {
                       </td>
                       
                       <td class="align-middle text-center">
-                        <a href="">Hapus</a>
-                        <a href="">Edit</a>
-                        
+                      <a href="updatepelanggan.php?id=<?= $row ["idpelanggan"] ?>" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModalUpdate">
+                      Update</a> |
+                      
                       </td>
                     </tr>
                   </tbody>
@@ -281,6 +284,33 @@ if ( isset($_POST["tambahpelanggan"])) {
       <form action="" method="post">
       <div class="modal-body">
         <input type="text" class="form-control mt-2" name="namapelanggan" placeholder="Nama Pelanggan">
+        <input type="text" class="form-control mt-2" name="notelp" placeholder="No telepon">
+        <input type="text" class="form-control mt-2" name="alamat" placeholder="alamat">
+        
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success" data-bs-dismiss="modal" name="tambahpelanggan">Input</button>
+        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="myModalUpdate">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Tambah Pelanggan</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <form action="" method="post">
+      <div class="modal-body">
+        <input type="text" class="form-control mt-2" name="namapelanggan" placeholder="Nama Pelanggan" value="<?= $dataproduk["namapelanggan"]; ?>">
         <input type="text" class="form-control mt-2" name="notelp" placeholder="No telepon">
         <input type="text" class="form-control mt-2" name="alamat" placeholder="alamat">
         

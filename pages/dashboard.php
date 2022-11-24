@@ -1,10 +1,17 @@
 <?php 
 session_start();
 require "../functions/functions.php";
-if ( !isset($_SESSION["login"])) {
-    header("Location:login.php");
-    exit;
+// if ( !isset($_SESSION["login"])) {
+//     header("Location:login.php");
+//     exit;
+// }
+if($_SESSION['nama']!=""){
+  $username = $_SESSION['username'];
+  $level = $_SESSION['level'];
+}else {
+  header("location: login.php");
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,80 +55,17 @@ if ( !isset($_SESSION["login"])) {
       </a>
     </div>
     <hr class="horizontal dark mt-0">
-    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
-      <ul class="navbar-nav">
+    <?php 
+         
 
-      <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Administrasi</h6>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link active" href="../pages/dashboard.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Dashboard</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="stok.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Data Produk</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="datapesanan.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Data Penjualan</span>
-          </a>
-        </li>
-        <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Kasir</h6>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="datapelanggan.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10""></i>
-            </div>
-            <span class="nav-link-text ms-1">Input Data Penjualan</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="stok.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Input Data Produk</span>
-          </a>
-          <li class="nav-item">
-          <a class="nav-link " href="datapenjualan.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Rekap input penjualan</span>
-          </a>
-        
-        
-        <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Aksi</h6>
-        </li>
-        
-        
-        
-        <li class="nav-item">
-          <a class="nav-link " href="sessionlogout.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <img src="https://cdn-icons-png.flaticon.com/512/2150/2150376.png" class="text-info text-sm opacity-10" alt="" width="18">
-            </div>
-            <span class="nav-link-text ms-1">Log out</span>
-          </a>
-        </li>
-      </ul>
-    </div>
+         // cek apakah yang mengakses halaman ini sudah login
+         if($level == 'admin'){
+           include 'sidenavigationadmin.php';
+         } else {
+           include 'sidenavigationkasir.php';
+         }
+
+       ?>
     
   </aside>
   <main class="main-content position-relative border-radius-lg ">
