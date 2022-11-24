@@ -89,7 +89,7 @@ if ( isset($_POST["submit"])) {
               <div class="card-body">
                 <form role="form" method="POST" action="">
                     <div class="mb-3">
-                      <input type="hidden" name="idproduk" class="form-control" value="<?= $dataproduk["idproduk"]; ?>" aria-label="kode" />
+                      <input type="hidden" name="id" class="form-control" value="<?= $dataproduk["idproduk"]; ?>" aria-label="kode" />
                     </div>
                     <div class="mb-3">
                       <input type="text" autocomplete="off" name="namaproduk" class="form-control" aria-label="kode" placeholder="Nama Produk" value="<?= $dataproduk["namaproduk"]; ?>"/>
