@@ -53,8 +53,10 @@ if ($_SESSION['nama'] != "") {
     // cek apakah yang mengakses halaman ini sudah login
     if ($level == 'admin') {
       include 'sidenavigationadmin.php';
-    } else {
+    } else if($level == 'kasir') {
       include 'sidenavigationkasir.php';
+    } else {
+      include 'sidenavigationpelanggan.php';
     }
     ?>
 
@@ -81,7 +83,7 @@ if ($_SESSION['nama'] != "") {
             <li class="nav-item d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none">Hilda</span>
+                <span class="d-sm-inline d-none"><?php echo $_SESSION['level']; ?></span>
               </a>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">

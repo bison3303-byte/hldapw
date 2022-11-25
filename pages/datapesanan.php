@@ -170,7 +170,7 @@ if (isset($_POST["submit"])) {
       </div>
     </div>
     <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-      Tambah Produk Baru
+      Input Penjualan
     </button>
 
     <footer class="footer pt-3  ">
@@ -212,37 +212,34 @@ if (isset($_POST["submit"])) {
   <script src="../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
 </body>
 <!-- The Modal -->
-<div class="modal fade" id="myModal">
+<div class="modal" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Tambah Barang Baru</h4>
+        <h4 class="modal-title">Input Penjualan</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
 
-      <form action="" method="post">
-        <div class="modal-body">
-          Pilih Pelanggan
-          <select name="idpelanggan">
-            <?php
-            $getpelanggan = mysqli_query($conn, "SELECT *FROM pelanggan");
-            while ($pl = mysqli_fetch_array($getpelanggan)) {
-            }
+      <!-- Modal body -->
+      <div class="modal-body">
+       <form action="" method="post">
+       <div class="mb-3 mt-3">
+        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+      </div>
+      <div class="mb-3">
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+      </div>
 
-            ?>
+       </form>
+      </div>
 
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
 
-          </select>
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-success" data-bs-dismiss="modal" name="submit">Input</button>
-          <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        </div>
-      </form>
     </div>
   </div>
 </div>
