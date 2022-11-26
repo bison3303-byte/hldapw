@@ -139,46 +139,46 @@ function tambahpelanggan($data)
         VALUES
         ('', '$nama', '$notelp', '$alamat')
         ";
-   mysqli_query($conn, $query);
-  
-   return mysqli_affected_rows($conn);
+  mysqli_query($conn, $query);
 
-
+  return mysqli_affected_rows($conn);
 }
-function tambahDataPesanan($data){
-    global $conn;
-   // ambil data dari masing masing elemen dalam form
-   
-  
-   $harga = htmlspecialchars($data ["hargajual"]) ;
-   $laba = htmlspecialchars($data ["laba"]) ;
-   $tanggal = ($data["tanggal"]);
-   $idproduk = htmlspecialchars($data ["idproduk"]);
- 
+function tambahDataPesanan($data)
+{
+  global $conn;
+  // ambil data dari masing masing elemen dalam form
 
 
-   //query insert data
-$query = "INSERT INTO pesanan
+  $harga = htmlspecialchars($data["hargajual"]);
+  $laba = htmlspecialchars($data["laba"]);
+  $tanggal = ($data["tanggal"]);
+  $idproduk = htmlspecialchars($data["idproduk"]);
+
+
+
+  //query insert data
+  $query = "INSERT INTO pesanan
        VALUES
        ('', '$harga', ' $laba', ' $tanggal', '$idproduk')
        ";
   mysqli_query($conn, $query);
- 
+
   return mysqli_affected_rows($conn);
 }
 
 
-function updatePesanan($data){
-    global $conn;
-    // ambil data dari masing masing elemen dalam form
-    $id = $data["id"];
-    
-    $harga = htmlspecialchars($data ["hargajual"]) ;
-    $laba = htmlspecialchars($data ["laba"]) ;
-    $idproduk = htmlspecialchars($data ["idproduk"]) ;
+function updatePesanan($data)
+{
+  global $conn;
+  // ambil data dari masing masing elemen dalam form
+  $id = $data["id"];
 
-    //query insert data
-    $query = "UPDATE pesanan SET 
+  $harga = htmlspecialchars($data["hargajual"]);
+  $laba = htmlspecialchars($data["laba"]);
+  $idproduk = htmlspecialchars($data["idproduk"]);
+
+  //query insert data
+  $query = "UPDATE pesanan SET 
             
         
             hargajual = '$harga',
@@ -186,14 +186,13 @@ function updatePesanan($data){
             idproduk = '$idproduk'
             WHERE id = $id 
     ";
-   mysqli_query($conn, $query);
-  
-   return mysqli_affected_rows($conn);
+  mysqli_query($conn, $query);
 
+  return mysqli_affected_rows($conn);
 }
-function hapusPesanan ($id){
-    global $conn;
-    mysqli_query($conn, "DELETE FROM pesanan WHERE id = $id");
-     return mysqli_affected_rows($conn);
+function hapusPesanan($id)
+{
+  global $conn;
+  mysqli_query($conn, "DELETE FROM pesanan WHERE id = $id");
+  return mysqli_affected_rows($conn);
 }
-?>
