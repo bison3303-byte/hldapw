@@ -1,11 +1,11 @@
 <?php
 session_start();
 include '../functions/functions.php';
-$dataproduk = query("SELECT *FROM pesanan");
+$dataproduk = query("SELECT *FROM produk");
 if (isset($_POST["submit"])) {
 
   //Cek apakah data berhasil ditambahkan atau tidak
-  if (tambahDataPesanan($_POST) > 0) {
+  if (tambahData($_POST) > 0) {
     echo "
     <script>
             alert('data berhasil ditambahkan!');
@@ -138,10 +138,12 @@ if ($_SESSION['nama'] != "") {
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id Barang</th>
-                      <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Harga Jual</th>
-                      <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Laba</th>
-                      <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Tanggal</th>
-                      <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Aksi</th>
+                      <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Nama Produk</th>
+                      <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Deskrispi</th>
+                      <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Harga</th>
+                      <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">Stok Barang</th>
+                      <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">Tanggal</th>
+                      
                     </tr>
                   </thead>
                   <tbody>
@@ -152,38 +154,34 @@ if ($_SESSION['nama'] != "") {
                           <div class="d-flex flex-column justify-content-center">
                             <h5 class="mb-0 text-sm"><?= $i; ?></h5>
                           </div>
-                        </div>
-                        </td>
-                        <td class="align-middle text-center">
-                          <span class="text-secondary font-weight-bold"><?= $row["hargajual"] ?></span>
-                        </td>
-                        <td class="align-middle text-center">
-                          <span class="text-secondary font-weight-bold"><?= $row["laba"] ?></span>
-                        </td>
-                        <td class="align-middle text-center">
-                          <span class="text-secondary font-weight-bold"><?= $row["tanggal"] ?></span>
-                        </td>
-                       
-                        
-                        
-                        <td class="align-middle text-center">
-                          <a href="../action/ubahpesanan.php?id=<?= $row["id"] ?>" class="btn btn-danger btn-sm">Ubah</a>
-                          <a href="../action/hapuspesanan.php?id=<?= $row["id"] ?>" class="btn btn-success btn-sm" onclick="return confirm ('Anda yakin ingin menghapus data?');">Hapus</a>
-
-                        </td>
-                        </tr>
-                        </tbody>
-                        <?php $i++; ?>
-                        <?php endforeach; ?>
+              </div>
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-secondary font-weight-bold"><?= $row["namaproduk"] ?></span>
+              </td>
+              <td>
+                <p class="align-middle text-center "><?= $row["deskripsi"] ?></p>
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-secondary font-weight-bold"><?= $row["harga"] ?></span>
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-secondary font-weight-bold"><?= $row["stok"] ?></span>
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-secondary font-weight-bold"><?= $row["tanggal"] ?></span>
+              </td>
+              </tr>
+              </tbody>
+              <?php $i++; ?>
+              <?php endforeach; ?>
               </table>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-      Input Pesanan Baru
-    </button>
+   
 
     <footer class="footer pt-3  ">
       <div class="container-fluid">
@@ -224,43 +222,7 @@ if ($_SESSION['nama'] != "") {
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
 </body>
-<!-- The Modal -->
-<div class="modal fade" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Tambah Pesanan Baru</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <form action="" method="post">
-        <div class="modal-body">
-          <input type="text" class="form-control mt-2" name="hargajual" placeholder="Harga Jual">
-          <input type="text" class="form-control mt-2" name="laba" placeholder="laba">
-          <select name="idproduk">
-            <?php
-            $query = mysqli_query($conn, "SELECT *FROM produk");
-            while($data = mysqli_fetch_array($query)){
-              $idproduk = $data['idproduk'];
-
-            }
-            ?>
-            <option value="<?=$id;?>"></option>
-          </select>
-          <input type="hidden" class="form-control mt-2" name="tanggal" placeholder="tanggal">
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-success" data-bs-dismiss="modal" name="submit">Input</button>
-          <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
 
 
 </html>

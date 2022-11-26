@@ -206,6 +206,7 @@ if ($_SESSION['nama'] != "") {
           <input type="text" class="form-control mt-2" name="deskripsi" placeholder="deskripsi">
           <input type="num" class="form-control mt-2" name="harga" placeholder="harga">
           <input type="num" class="form-control mt-2" name="stok" placeholder="stok">
+          <input type="hidden" class="form-control mt-2" name="tanggal" placeholder="tanggal">
         </div>
 
         <!-- Modal footer -->
