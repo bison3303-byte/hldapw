@@ -9,14 +9,14 @@ if (isset($_POST["submit"])) {
     echo "
     <script>
             alert('data berhasil ditambahkan!');
-        document.location.href='stok.php';
+        document.location.href='datapesanan.php';
     </script>
     ";
   } else {
     echo "
     <script>
             alert('data gagal ditambahkan!');
-        document.location.href='stok.php';
+        document.location.href='datapesanan.php';
     </script>
     ";
   }
@@ -203,15 +203,16 @@ if ($_SESSION['nama'] != "") {
         <div class="modal-body">
           <input type="text" class="form-control mt-2" name="hargajual" placeholder="Harga Jual">
           <input type="text" class="form-control mt-2" name="laba" placeholder="laba">
+         
           <select name="idproduk">
             <?php
-            $query = mysqli_query($conn, "SELECT *FROM produk");
+            $query = mysqli_query($conn, "SELECT pesanan.idproduk, produk.namaproduk FROM produk INNER JOIN pesanan ON produk.id=pesanan.idproduk;");
             while($data = mysqli_fetch_array($query)){
-              $idproduk = $data['idproduk'];
+              $id = $data['id'];
 
             }
             ?>
-            <option value="<?=$id;?>"></option>
+            <option value="<?=$query["id"] ?>"></option>
           </select>
           <input type="hidden" class="form-control mt-2" name="tanggal" placeholder="tanggal">
         </div>

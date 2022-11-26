@@ -22,17 +22,15 @@ function query ($query) {
 function tambahData($data){
      global $conn;
     // ambil data dari masing masing elemen dalam form
-    
-   
     $nama = htmlspecialchars($data ["namaproduk"]) ;
     $deskripsi = htmlspecialchars($data ["deskripsi"]) ;
     $harga = htmlspecialchars($data ["harga"]) ;
     $stok = htmlspecialchars($data ["stok"]);
-    $tanggal = ($data["tanggal"]);
+    
     //query insert data
 $query = "INSERT INTO produk
         VALUES
-        ('', '$nama', '$deskripsi', '$harga', '$stok', '$tanggal')
+        ('', '$nama', '$deskripsi', '$harga', '$stok')
         ";
    mysqli_query($conn, $query);
   
