@@ -53,7 +53,7 @@ if ($_SESSION['nama'] != "") {
     // cek apakah yang mengakses halaman ini sudah login
     if ($level == 'admin') {
       include 'sidenavigationadmin.php';
-    } else if($level == 'kasir') {
+    } else if ($level == 'kasir') {
       include 'sidenavigationkasir.php';
     } else {
       include 'sidenavigationpelanggan.php';
@@ -116,7 +116,10 @@ if ($_SESSION['nama'] != "") {
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Penjualan Hari Ini</p>
                     <h5 class="font-weight-bolder">
-                      $53,000
+                      <?php
+                      echo "halo halo"
+
+                      ?>
                     </h5>
                     <p class="mb-0">
                       <span class="text-success text-sm font-weight-bolder">+55%</span>
@@ -151,7 +154,7 @@ if ($_SESSION['nama'] != "") {
                   </div>
                 </div>
                 <div class="col-4 text-end">
-                  
+
                   <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
                     <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
                   </div>
