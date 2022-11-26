@@ -78,7 +78,7 @@ if (isset($_POST["tambahpelanggan"])) {
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Halaman</a></li>
             <li class="breadcrumb-item text-sm text-white active" aria-current="page">Produk</li>
           </ol>
-          <h6 class="font-weight-bolder text-white mb-0">Data Produk</h6>
+          <h6 class="font-weight-bolder text-white mb-0">Data Pelanggan</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -94,7 +94,7 @@ if (isset($_POST["tambahpelanggan"])) {
             <li class="nav-item d-flex align-items-center">
               <a href="login.php" class="nav-link text-white font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none">Hilda</span>
+                <span class="d-sm-inline d-none"></span>
               </a>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -127,7 +127,7 @@ if (isset($_POST["tambahpelanggan"])) {
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
-              <h6>Data Produk</h6>
+              <h6>Data Pelanggan</h6>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
@@ -150,24 +150,21 @@ if (isset($_POST["tambahpelanggan"])) {
                           <div class="d-flex flex-column justify-content-center">
                             <h5 class="mb-0 text-sm"><?= $i; ?></h5>
                           </div>
-              </div>
-              </td>
-              <td class="align-middle text-center">
-                <p class="text-secondary text-xs font-weight-bold"><?= $row["namapelanggan"] ?></p>
-              </td>
-              <td>
-                <p class="align-middle text-center text-sm"><?= $row["notelp"] ?></p>
-              </td>
-              <td>
-                <p class="align-middle text-center text-sm"><?= $row["alamat"] ?></p>
-              </td>
-
-              <td class="align-middle text-center">
-                <a href="updatepelanggan.php?id=<?= $row["idpelanggan"] ?>" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModalUpdate">
-                  Update</a> |
-
-              </td>
-              </tr>
+                          </div>
+                          </td>
+                          <td class="align-middle text-center">
+                            <p class="text-secondary text-xs font-weight-bold"><?= $row["namapelanggan"] ?></p>
+                          </td>
+                          <td>
+                            <p class="align-middle text-center text-sm"><?= $row["notelp"] ?></p>
+                          </td>
+                          <td>
+                            <p class="align-middle text-center text-sm"><?= $row["alamat"] ?></p>
+                        </td>
+                        <td class="align-middle text-center">
+                          <a href="updatepelanggan.php?id=<?= $row["idpelanggan"] ?>" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#myModalUpdate">Update</a>
+                        </td>
+                      </tr>
               </tbody>
               <?php $i++; ?>
             <?php endforeach; ?>

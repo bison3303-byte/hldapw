@@ -132,23 +132,56 @@ if ($_SESSION['nama'] != "") {
             <div class="card-header pb-0">
               <h6>Data Produk</h6>
             </div>
-            <?php
-            // cek apakah yang mengakses halaman ini sudah login
-            if ($level == 'admin') {
-              include 'pagesadmin.php';
-            } else if($level == 'kasir') {
-              include 'pageskasir.php';
-            } else {
-              include 'sidenavigationpelanggan.php';
-            }
-            ?>
+            <div class="card-body px-0 pt-0 pb-2">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id Barang</th>
+                      <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Nama Produk</th>
+                      <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Deskrispi</th>
+                      <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Harga</th>
+                      <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">Stok Barang</th>
+                      <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">Tanggal</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $i = 1; ?>
+                    <?php foreach ($dataproduk as $row) :  ?>
+                      <tr>
+                        <td>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h5 class="mb-0 text-sm"><?= $i; ?></h5>
+                          </div>
+              </div>
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-secondary font-weight-bold"><?= $row["namaproduk"] ?></span>
+              </td>
+              <td>
+                <p class="align-middle text-center "><?= $row["deskripsi"] ?></p>
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-secondary font-weight-bold"><?= $row["harga"] ?></span>
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-secondary font-weight-bold"><?= $row["stok"] ?></span>
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-secondary font-weight-bold"><?= $row["tanggal"] ?></span>
+              </td>
+              </tr>
+              </tbody>
+              <?php $i++; ?>
+              <?php endforeach; ?>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-      Input Barang Baru
-    </button>
+   
 
     <footer class="footer pt-3  ">
       <div class="container-fluid">
@@ -189,34 +222,7 @@ if ($_SESSION['nama'] != "") {
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
 </body>
-<!-- The Modal -->
-<div class="modal fade" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Tambah Barang Baru</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <form action="" method="post">
-        <div class="modal-body">
-          <input type="text" class="form-control mt-2" name="namaproduk" placeholder="Nama Produk">
-          <input type="text" class="form-control mt-2" name="deskripsi" placeholder="deskripsi">
-          <input type="num" class="form-control mt-2" name="harga" placeholder="harga">
-          <input type="num" class="form-control mt-2" name="stok" placeholder="stok">
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-success" data-bs-dismiss="modal" name="submit">Input</button>
-          <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
 
 
 </html>

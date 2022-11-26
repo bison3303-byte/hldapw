@@ -1,6 +1,7 @@
 <?php
 
 $conn = mysqli_connect("localhost", "root", "", "db_pembelian");
+
 if (mysqli_connect_errno()) {
   echo "Koneksi gagal" . mysqli_connect_error();
 }
@@ -138,7 +139,61 @@ function tambahpelanggan($data)
         VALUES
         ('', '$nama', '$notelp', '$alamat')
         ";
-  mysqli_query($conn, $query);
+   mysqli_query($conn, $query);
+  
+   return mysqli_affected_rows($conn);
 
+
+}
+function tambahDataPesanan($data){
+    global $conn;
+   // ambil data dari masing masing elemen dalam form
+   
+  
+   $harga = htmlspecialchars($data ["hargajual"]) ;
+   $laba = htmlspecialchars($data ["laba"]) ;
+   $tanggal = ($data["tanggal"]);
+   $idproduk = htmlspecialchars($data ["idproduk"]);
+ 
+
+
+   //query insert data
+$query = "INSERT INTO pesanan
+       VALUES
+       ('', '$harga', ' $laba', ' $tanggal', '$idproduk')
+       ";
+  mysqli_query($conn, $query);
+ 
   return mysqli_affected_rows($conn);
 }
+
+
+function updatePesanan($data){
+    global $conn;
+    // ambil data dari masing masing elemen dalam form
+    $id = $data["id"];
+    
+    $harga = htmlspecialchars($data ["hargajual"]) ;
+    $laba = htmlspecialchars($data ["laba"]) ;
+    $idproduk = htmlspecialchars($data ["idproduk"]) ;
+
+    //query insert data
+    $query = "UPDATE pesanan SET 
+            
+        
+            hargajual = '$harga',
+            laba = '$laba',
+            idproduk = '$idproduk'
+            WHERE id = $id 
+    ";
+   mysqli_query($conn, $query);
+  
+   return mysqli_affected_rows($conn);
+
+}
+function hapusPesanan ($id){
+    global $conn;
+    mysqli_query($conn, "DELETE FROM pesanan WHERE id = $id");
+     return mysqli_affected_rows($conn);
+}
+?>

@@ -1,26 +1,32 @@
 <?php
 session_start();
 include '../functions/functions.php';
-
-$dataproduk = query("SELECT *FROM produk");
-
+$dataproduk = query("SELECT *FROM pesanan");
 if (isset($_POST["submit"])) {
+
   //Cek apakah data berhasil ditambahkan atau tidak
-  if (tambahData($_POST) > 0) {
+  if (tambahDataPesanan($_POST) > 0) {
     echo "
     <script>
             alert('data berhasil ditambahkan!');
-        document.location.href='stok.php';
+        document.location.href='datapesanan.php';
     </script>
     ";
   } else {
     echo "
     <script>
             alert('data gagal ditambahkan!');
-        document.location.href='stok.php';
+        document.location.href='datapesanan.php';
     </script>
     ";
   }
+}
+
+if ($_SESSION['nama'] != "") {
+  $username = $_SESSION['username'];
+  $level = $_SESSION['level'];
+} else {
+  header("location: login.php");
 }
 ?>
 <!DOCTYPE html>
@@ -57,6 +63,7 @@ if (isset($_POST["submit"])) {
       </a>
     </div>
     <hr class="horizontal dark mt-0">
+
     <?php
     if ($_SESSION['level'] == 'admin') {
       include 'sidenavigationadmin.php';
@@ -72,7 +79,7 @@ if (isset($_POST["submit"])) {
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Halaman</a></li>
-            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Produk</li>
+            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Stok</li>
           </ol>
           <h6 class="font-weight-bolder text-white mb-0">Data Produk</h6>
         </nav>
@@ -90,7 +97,7 @@ if (isset($_POST["submit"])) {
             <li class="nav-item d-flex align-items-center">
               <a href="login.php" class="nav-link text-white font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none">Hilda</span>
+                <span class="d-sm-inline d-none"><?php echo $_SESSION['level']; ?></span></span>
               </a>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -125,52 +132,21 @@ if (isset($_POST["submit"])) {
             <div class="card-header pb-0">
               <h6>Data Produk</h6>
             </div>
-            <div class="card-body px-0 pt-0 pb-2">
-              <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
-                  <thead>
-                    <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID Produk</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jumlah</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
-
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php $i = 1; ?>
-                    <?php foreach ($dataproduk as $row) :  ?>
-                      <tr>
-                        <td>
-                          <div class="d-flex flex-column justify-content-center">
-                            <h5 class="mb-0 text-sm"><?= $i; ?></h5>
-                          </div>
-              </div>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold"><?= $row["namaproduk"] ?></span>
-              </td>
-              <td>
-                <p class="align-middle text-center text-sm"><?= $row["deskripsi"] ?></p>
-              </td>
-
-              <td class="align-middle text-center">
-                <a href="">Hapus</a>
-                <a href="">Edit</a>
-
-              </td>
-              </tr>
-              </tbody>
-              <?php $i++; ?>
-            <?php endforeach; ?>
-            </table>
-            </div>
+            <?php
+            if ($level == 'admin') {
+              include 'adminpesanan.php';
+            } else if($level == 'kasir') {
+              include 'kasirpesanan.php';
+            } else {
+              include 'sidenavigationpelanggan.php';
+            }
+            ?>
           </div>
         </div>
       </div>
     </div>
     <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-      Tambah Produk Baru
+      Input Pesanan Baru
     </button>
 
     <footer class="footer pt-3  ">
@@ -181,7 +157,8 @@ if (isset($_POST["submit"])) {
               © <script>
                 document.write(new Date().getFullYear())
               </script>,
-              made with <a href=" " class="font-weight-bold" target="_blank">Kelompok 4</a>
+              made with <i class="fa fa-heart"></i> by
+              <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Kelompok 4</a>
               for a better web.
             </div>
           </div>
@@ -218,23 +195,26 @@ if (isset($_POST["submit"])) {
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Tambah Barang Baru</h4>
+        <h4 class="modal-title">Tambah Pesanan Baru</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
 
       <form action="" method="post">
         <div class="modal-body">
-          Pilih Pelanggan
-          <select name="idpelanggan">
+          <input type="text" class="form-control mt-2" name="hargajual" placeholder="Harga Jual">
+          <input type="text" class="form-control mt-2" name="laba" placeholder="laba">
+         
+          <select name="idproduk">
             <?php
-            $getpelanggan = mysqli_query($conn, "SELECT *FROM pelanggan");
-            while ($pl = mysqli_fetch_array($getpelanggan)) {
+            $query = mysqli_query($conn, "SELECT pesanan.idproduk, produk.namaproduk FROM produk INNER JOIN pesanan ON produk.id=pesanan.idproduk;");
+            while($data = mysqli_fetch_array($query)){
+              $id = $data['id'];
+
             }
-
             ?>
-
-
+            <option value="<?=$query["id"] ?>"></option>
           </select>
+          <input type="hidden" class="form-control mt-2" name="tanggal" placeholder="tanggal">
         </div>
 
         <!-- Modal footer -->
@@ -246,5 +226,6 @@ if (isset($_POST["submit"])) {
     </div>
   </div>
 </div>
+
 
 </html>

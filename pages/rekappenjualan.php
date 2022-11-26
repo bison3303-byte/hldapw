@@ -1,11 +1,11 @@
 <?php
 session_start();
 include '../functions/functions.php';
-$dataproduk = query("SELECT *FROM produk");
+$dataproduk = query("SELECT *FROM pesanan");
 if (isset($_POST["submit"])) {
 
   //Cek apakah data berhasil ditambahkan atau tidak
-  if (tambahData($_POST) > 0) {
+  if (tambahDataPesanan($_POST) > 0) {
     echo "
     <script>
             alert('data berhasil ditambahkan!');
@@ -132,23 +132,47 @@ if ($_SESSION['nama'] != "") {
             <div class="card-header pb-0">
               <h6>Data Produk</h6>
             </div>
-            <?php
-            // cek apakah yang mengakses halaman ini sudah login
-            if ($level == 'admin') {
-              include 'pagesadmin.php';
-            } else if($level == 'kasir') {
-              include 'pageskasir.php';
-            } else {
-              include 'sidenavigationpelanggan.php';
-            }
-            ?>
+            <div class="card-body px-0 pt-0 pb-2">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center mb-0">
+                <thead>
+                    <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id Barang</th>
+                    <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Harga Jual</th>
+                    <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Laba</th>
+                    <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Tanggal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $i = 1; ?>
+                    <?php foreach ($dataproduk as $row) :  ?>
+                      <tr>
+                        <td>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h5 class="mb-0 text-sm"><?= $i; ?></h5>
+                          </div>
+                        </div>
+                        </td>
+                        <td class="align-middle text-center">
+                          <span class="text-secondary font-weight-bold"><?= $row["hargajual"] ?></span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <span class="text-secondary font-weight-bold"><?= $row["laba"] ?></span>
+                        </td>
+                        <td class="align-middle text-center">
+                          <span class="text-secondary font-weight-bold"><?= $row["tanggal"] ?></span>
+                        </td>
+                        </tr>
+                        </tbody>
+                        <?php $i++; ?>
+                        <?php endforeach; ?>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-      Input Barang Baru
-    </button>
+   
 
     <footer class="footer pt-3  ">
       <div class="container-fluid">
@@ -196,16 +220,25 @@ if ($_SESSION['nama'] != "") {
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Tambah Barang Baru</h4>
+        <h4 class="modal-title">Tambah Pesanan Baru</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
 
       <form action="" method="post">
         <div class="modal-body">
-          <input type="text" class="form-control mt-2" name="namaproduk" placeholder="Nama Produk">
-          <input type="text" class="form-control mt-2" name="deskripsi" placeholder="deskripsi">
-          <input type="num" class="form-control mt-2" name="harga" placeholder="harga">
-          <input type="num" class="form-control mt-2" name="stok" placeholder="stok">
+          <input type="text" class="form-control mt-2" name="hargajual" placeholder="Harga Jual">
+          <input type="text" class="form-control mt-2" name="laba" placeholder="laba">
+          <select name="idproduk">
+            <?php
+            $query = mysqli_query($conn, "SELECT *FROM produk");
+            while($data = mysqli_fetch_array($query)){
+              $idproduk = $data['idproduk'];
+
+            }
+            ?>
+            <option value="<?=$id;?>"></option>
+          </select>
+          <input type="hidden" class="form-control mt-2" name="tanggal" placeholder="tanggal">
         </div>
 
         <!-- Modal footer -->

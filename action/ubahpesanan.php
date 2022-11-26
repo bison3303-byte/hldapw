@@ -4,24 +4,24 @@ include "../functions/functions.php";
 $idproduk = $_GET["id"];
 
 //query data mahasiswa berdasarkan id
-$dataproduk = query("SELECT *FROM produk WHERE id =$idproduk")[0];
+$dataproduk = query("SELECT *FROM pesanan WHERE id =$idproduk")[0];
 //Cek apakah tombol submit sudah diklik 
 if ( isset($_POST["submit"])) {
      
    
    //Cek apakah data berhasil ditambahkan atau tidak
-   if (updateData($_POST) > 0) {
+   if (updatePesanan($_POST) > 0) {
     echo "
     <script>
             alert('data berhasil diupdate!');
-        document.location.href='../pages/stok.php';
+        document.location.href='../pages/datapesanan.php';
     </script>
     ";
 } else {
      echo "
     <script>
             alert('data gagal diupdate!');
-        document.location.href='../pages/stok.php';
+        document.location.href='../pages/datapesanan.php';
     </script>
     ";
 }
@@ -83,7 +83,7 @@ if ( isset($_POST["submit"])) {
           <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
             <div class="card z-index-0">
               <div class="card-header text-center pt-4">
-                <h5>Ubah Data</h5>
+                <h5>Ubah Pesanan</h5>
               </div>
 
               <div class="card-body">
@@ -92,21 +92,22 @@ if ( isset($_POST["submit"])) {
                       <input type="hidden" name="id" class="form-control" value="<?= $dataproduk["id"]; ?>" aria-label="id"/>
                     </div>
                     <div class="mb-3">
-                      <input type="text" autocomplete="off" name="namaproduk" class="form-control" aria-label="kode" placeholder="Nama Produk" value="<?= $dataproduk["namaproduk"]; ?>"/>
+                      <input type="text" autocomplete="off" name="hargajual" class="form-control" aria-label="kode" placeholder="Nama Produk" value="<?= $dataproduk["hargajual"]; ?>"/>
                     </div>
                   <div class="mb-3">
-                    <input type="text" autocomplete="off" class="form-control" placeholder="Deskripsi" name="deskripsi" aria-label="Name" value="<?= $dataproduk["deskripsi"]; ?>"/>
+                    <input type="text" autocomplete="off" class="form-control" placeholder="Deskripsi" name="laba" aria-label="Name" value="<?= $dataproduk["laba"]; ?>"/>
                   </div>
                   <div class="mb-3">
-                    <input type="text" autocomplete="off" name="harga" class="form-control" placeholder="Harga Produk" aria-label="harga" value="<?= $dataproduk["harga"]; ?>"/>
+                    <input type="hidden" autocomplete="off" class="form-control" placeholder="Deskripsi" name="tanggal" aria-label="Name" value="<?= $dataproduk["tanggal"]; ?>"/>
                   </div>
                   <div class="mb-3">
-                    <input type="text" autocomplete="off" name="stok" class="form-control" placeholder="Stok Produk" aria-label="stok" value="<?= $dataproduk["stok"]; ?>"/>
+                    <input type="text" autocomplete="off" name="idproduk" class="form-control" placeholder="Harga Produk" aria-label="harga" value="<?= $dataproduk["idproduk"]; ?>"/>
                   </div>
+                
                   
                   
                   <div class="text-center">
-                    <button type="submit" name="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Update Data</button>
+                    <button type="submit" name="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Update Pesanan</button>
                   </div>
                 </form>
               </div>
