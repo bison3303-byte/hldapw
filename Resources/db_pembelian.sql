@@ -25,7 +25,8 @@ SET time_zone = "+00:00";
 
 --
 -- Table structure for table `datapenjualan`
---
+CREATE DATABASE db_pembelian;
+use db_pembelian;
 
 CREATE TABLE `datapenjualan` (
   `id` int(11) NOT NULL,
