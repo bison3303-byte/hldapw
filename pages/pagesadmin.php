@@ -8,6 +8,7 @@
                       <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Deskrispi</th>
                       <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Harga</th>
                       <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">Stok Barang</th>
+                      <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">Tanggal</th>
                       <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Aksi</th>
                     </tr>
                   </thead>
@@ -32,6 +33,9 @@
               </td>
               <td class="align-middle text-center">
                 <span class="text-secondary font-weight-bold"><?= $row["stok"] ?></span>
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-secondary font-weight-bold"><?= $row["tanggal"] ?></span>
               </td>
               <td class="align-middle text-center">
                 <a href="../action/ubah.php?id=<?= $row["id"] ?>" class="btn btn-danger btn-sm">Ubah</a>
