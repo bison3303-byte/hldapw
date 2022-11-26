@@ -151,6 +151,7 @@ if ($_SESSION['nama'] != "") {
                   </div>
                 </div>
                 <div class="col-4 text-end">
+                  
                   <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
                     <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
                   </div>
