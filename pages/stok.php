@@ -136,7 +136,7 @@ if ($_SESSION['nama'] != "") {
             // cek apakah yang mengakses halaman ini sudah login
             if ($level == 'admin') {
               include 'pagesadmin.php';
-            } else if($level == 'kasir') {
+            } else if ($level == 'kasir') {
               include 'pageskasir.php';
             } else {
               include 'sidenavigationpelanggan.php';
