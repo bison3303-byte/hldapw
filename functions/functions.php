@@ -60,7 +60,11 @@ function updateData($data)
   $tanggal = date('Y-m-d');
 
   //query insert data
+<<<<<<< HEAD
   $query = "UPDATE produk SET          
+=======
+  $query = "UPDATE produk SET 
+>>>>>>> c36e954cf9239659d71913ea930eb69d1a5d2ab0
             namaproduk = '$namaproduk',
             deskripsi = '$deskripsi',
             harga = '$harga',
@@ -187,4 +191,43 @@ function hapusPesanan($id)
   global $conn;
   mysqli_query($conn, "DELETE FROM pesanan WHERE id = $id");
   return mysqli_affected_rows($conn);
+}
+
+function get_data_hari_ini()
+{
+  $hari_ini = date('Y-m-d');
+
+  $data = query("SELECT SUM(`stok_terjual`) AS terjual, SUM(`stok_sisa`) AS sisa
+FROM datapenjualan WHERE tanggal='$hari_ini'
+")[0];
+
+  return $data;
+}
+
+function get_bulan_hari_ini()
+{
+  $first_month = date("Y-m-1");
+  $last_month = date("Y-m-t", strtotime(date('Y-m-d')));
+
+  $data = query("
+SELECT SUM(`stok_terjual`) AS terjual, SUM(`stok_sisa`) AS sisa
+FROM datapenjualan WHERE tanggal >= '$first_month' AND tanggal < '$last_month'
+")[0];
+
+  return $data;
+}
+
+function get_tahun_hari_ini()
+{
+  $first_year = date("Y-1-1");
+  $last_year = date("Y-12-t", strtotime(date("Y-12-d")));
+
+
+  $data = query("
+SELECT SUM(`stok_terjual`) AS terjual, SUM(`stok_sisa`) AS sisa
+FROM datapenjualan WHERE tanggal >= '$first_year' AND tanggal < '$last_year'
+")[0];
+
+
+  return $data;
 }
