@@ -155,7 +155,7 @@ foreach ($penjualan as $data) {
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">New Clients</p>
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Penjualan Minggu Ini</p>
                     <h5 class="font-weight-bolder">
                       +3,462
                     </h5>
@@ -181,7 +181,7 @@ foreach ($penjualan as $data) {
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Penjualan Hari Ini</p>
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Penjualan Bulan Ini</p>
                     <h5 class="font-weight-bolder">
                       <?php echo "halo halo"
                       ?>
@@ -208,7 +208,7 @@ foreach ($penjualan as $data) {
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Penjualan Hari Ini</p>
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Total produk terjual</p>
                     <h5 class="font-weight-bolder">
                       <?php
                       echo "halo halo"
