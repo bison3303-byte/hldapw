@@ -155,6 +155,7 @@ function tambahDataPesanan($data)
   $harga = htmlspecialchars($data["hargajual"]);
   $laba = htmlspecialchars($data["laba"]);
   $tanggal = ($data["tanggal"]);
+  $jumlah = ($data["jumlah"]);
   $idproduk = htmlspecialchars($data["idproduk"]);
   $tanggal = date('Y-m-d');
 
@@ -162,7 +163,7 @@ function tambahDataPesanan($data)
   //query insert data
   $query = "INSERT INTO pesanan
        VALUES
-       ('', '$harga', '$laba', '$idproduk', '$tanggal')
+       ('', '$harga', '$laba', '$idproduk', '$tanggal', '$jumlah')
        ";
   mysqli_query($conn, $query);
 
@@ -174,10 +175,9 @@ function updatePesanan($data)
 {
   global $conn;
   // ambil data dari masing masing elemen dalam form
-  $id = $data["id"];
+  $id = $data["idproduk"];
 
   $harga = htmlspecialchars($data["hargajual"]);
-  $laba = htmlspecialchars($data["laba"]);
   $idproduk = htmlspecialchars($data["idproduk"]);
 
   //query insert data
@@ -185,9 +185,8 @@ function updatePesanan($data)
             
         
             hargajual = '$harga',
-            laba = '$laba',
             idproduk = '$idproduk'
-            WHERE id = $id 
+            WHERE idproduk = $id 
     ";
   mysqli_query($conn, $query);
 

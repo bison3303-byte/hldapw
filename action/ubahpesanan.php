@@ -4,7 +4,7 @@ include "../functions/functions.php";
 $idproduk = $_GET["id"];
 
 //query data mahasiswa berdasarkan id
-$dataproduk = query("SELECT *FROM pesanan WHERE id =$idproduk")[0];
+$dataproduk = query("SELECT *FROM pesanan WHERE idproduk =$idproduk")[0];
 //Cek apakah tombol submit sudah diklik 
 if ( isset($_POST["submit"])) {
      
@@ -89,15 +89,11 @@ if ( isset($_POST["submit"])) {
               <div class="card-body">
                 <form role="form" method="POST" action="">
                     <div class="mb-3">
-                      <input type="hidden" name="id" class="form-control" value="<?= $dataproduk["id"]; ?>" aria-label="id"/>
+                      <input type="hidden" name="idproduk" class="form-control" value="<?= $dataproduk["idproduk"]; ?>" aria-label="id"/>
                     </div>
                     <div class="mb-3">
                       <input type="text" autocomplete="off" name="hargajual" class="form-control" aria-label="kode" placeholder="Nama Produk" value="<?= $dataproduk["hargajual"]; ?>"/>
                     </div>
-                  <div class="mb-3">
-                    <input type="text" autocomplete="off" class="form-control" placeholder="Deskripsi" name="laba" aria-label="Name" value="<?= $dataproduk["laba"]; ?>"/>
-                  </div>
-                  
                   <div class="mb-3">
                   <?php
                     $no=0;
@@ -111,8 +107,8 @@ if ( isset($_POST["submit"])) {
                     ?>
                   </div>
                   <div class="mb-3">
-                    <input type="hidden" autocomplete="off" class="form-control" placeholder="Deskripsi" name="tanggal" aria-label="Name" value="<?= $dataproduk["tanggal"]; ?>"/>
-                  </div>
+                      <input type="text" autocomplete="off" name="jumlah" class="form-control" aria-label="kode" placeholder="Nama Produk" value="<?= $dataproduk["jumlah"]; ?>"/>
+                    </div>
                   <div class="text-center">
                     <button type="submit" name="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Update Pesanan</button>
                   </div>

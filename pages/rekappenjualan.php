@@ -1,7 +1,7 @@
 <?php
 session_start();
 include '../functions/functions.php';
-$dataproduk = query("SELECT *FROM pesanan ORDER BY tanggal DESC");
+$dataproduk = query("SELECT pesanan.idproduk, produk.namaproduk, produk.harga, pesanan.tanggal, pesanan.hargajual, pesanan.jumlah FROM produk INNER JOIN pesanan ON produk.id=pesanan.idproduk");
 if (isset($_POST["submit"])) {
 
   //Cek apakah data berhasil ditambahkan atau tidak
@@ -9,14 +9,14 @@ if (isset($_POST["submit"])) {
     echo "
     <script>
             alert('data berhasil ditambahkan!');
-        document.location.href='stok.php';
+        document.location.href='datapesanan.php';
     </script>
     ";
   } else {
     echo "
     <script>
             alert('data gagal ditambahkan!');
-        document.location.href='stok.php';
+        document.location.href='datapesanan.php';
     </script>
     ";
   }
@@ -81,7 +81,7 @@ if ($_SESSION['nama'] != "") {
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Halaman</a></li>
             <li class="breadcrumb-item text-sm text-white active" aria-current="page">Stok</li>
           </ol>
-          <h6 class="font-weight-bolder text-white mb-0">Data Produk</h6>
+          <h6 class="font-weight-bolder text-white mb-0">Data Pesanan</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -132,65 +132,74 @@ if ($_SESSION['nama'] != "") {
             <div class="card-header pb-0">
               <h6>Data Produk</h6>
             </div>
-            <div class="card-body pt-0 pb-2">
-              <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
-                  <thead>
-                    <tr>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id Barang</th>
-                      <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Harga Jual</th>
-                      <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Laba</th>
-                      <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Tanggal</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php $i = 1; ?>
-                    <?php foreach ($dataproduk as $row) :  ?>
-                      <tr>
-                        <td class="text-center">
-                          <div class="d-flex flex-column justify-content-center">
-                            <h5 class="mb-0 text-sm"><?= $i; ?></h5>
-                          </div>
-                        </td>
-                        <td class="align-middle text-center">
-                          <span class="text-secondary font-weight-bold"><?= $row["hargajual"] ?></span>
-                        </td>
-                        <td class="align-middle text-center">
-                          <span class="text-secondary font-weight-bold"><?= $row["laba"] ?></span>
-                        </td>
-                        <td class="align-middle text-center">
-                          <span class="text-secondary font-weight-bold"><?php $date =  date_create($row["tanggal"]);
-                                                                        echo date_format($date, "d-m-Y"); ?></span>
-                        </td>
-                      </tr>
-                  </tbody>
-                  <?php $i++; ?>
-                <?php endforeach; ?>
-                </table>
-              </div>
+            <div class="card-body  pt-0 pb-2">
+  <div class="table-responsive p-0">
+    <table class="table align-items-center mb-0">
+      <thead>
+        <tr>
+        <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">ID Produk</th>
+        <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Nama</th>
+          <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Harga Awal</th>
+          <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Harga Jual</th>
+          <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Jumlah</th>
+          <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Tanggal</th>
+        </tr>
+      </thead>
+      <tbody>
+       
+        <?php foreach ($dataproduk as $row) :  ?>
+          <tr>
+              <td class="align-middle text-center">
+                <span class="text-secondary font-weight-bold"><?= $row["idproduk"] ?></span>
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-secondary font-weight-bold"><?= $row["namaproduk"] ?></span>
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-secondary font-weight-bold"><?= $row["harga"] ?></span>
+              </td>   
+              <td class="align-middle text-center">
+                <span class="text-secondary font-weight-bold"><?= $row["hargajual"] ?></span>
+              </td>   
+            
+              <td class="align-middle text-center">
+                <span class="text-secondary font-weight-bold"><?= $row["jumlah"] ?></span>
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-secondary font-weight-bold"><?php $date =  date_create($row["tanggal"]); echo date_format($date, "d-m-Y"); ?></span>
+              </td>
+              </tr>
+              </tbody>
+              
+            <?php endforeach; ?>
+            </table>
             </div>
+
           </div>
         </div>
       </div>
+    </div>
+    <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+      Input Pesanan Baru
+    </button>
 
-
-      <footer class="footer pt-4">
-        <div class="container-fluid">
-          <div class="row align-items-center justify-content-lg-between">
-            <div class="col-lg-6 mb-lg-0 mb-4">
-              <div class="copyright text-center text-sm text-muted text-lg-start">
-                © <script>
-                  document.write(new Date().getFullYear())
-                </script>,
-                made with <i class="fa fa-heart"></i> by
-                <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Kelompok 4</a>
-                for a better web.
-              </div>
+    <footer class="footer pt-3  ">
+      <div class="container-fluid">
+        <div class="row align-items-center justify-content-lg-between">
+          <div class="col-lg-6 mb-lg-0 mb-4">
+            <div class="copyright text-center text-sm text-muted text-lg-start">
+              © <script>
+                document.write(new Date().getFullYear())
+              </script>,
+              made with <i class="fa fa-heart"></i> by
+              <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Kelompok 4</a>
+              for a better web.
             </div>
-
           </div>
+
         </div>
-      </footer>
+      </div>
+    </footer>
     </div>
   </main>
 
@@ -227,18 +236,22 @@ if ($_SESSION['nama'] != "") {
       <form action="" method="post">
         <div class="modal-body">
           <input type="text" class="form-control mt-2" name="hargajual" placeholder="Harga Jual">
-          <input type="text" class="form-control mt-2" name="laba" placeholder="laba">
-          <select name="idproduk">
-            <?php
-            $query = mysqli_query($conn, "SELECT *FROM produk");
-            while ($data = mysqli_fetch_array($query)) {
-              $idproduk = $data['idproduk'];
+          <input type="text" class="form-control mt-2" name="laba" placeholder="Laba">
+          
+          <?php
+            $no=0;
+            $hasil=mysqli_query($conn, "SELECT *FROM produk ORDER BY namaproduk");
+            echo '<select name="idproduk" class="form-control mt-2" required>';
+            echo '<option value="">...</option>';
+            while($rowbar=mysqli_fetch_array($hasil)){
+                echo '<option value="'.$rowbar['id'].'">'.$rowbar['namaproduk'].'</option>';   
             }
+            echo '</select>';
             ?>
-            <option value="<?= $id; ?>"></option>
-          </select>
-          <input type="hidden" class="form-control mt-2" name="tanggal" placeholder="tanggal">
         </div>
+        <input type="num" class="form-control mt-2" name="jumlah" placeholder="Jumlah Order">
+
+
 
         <!-- Modal footer -->
         <div class="modal-footer">

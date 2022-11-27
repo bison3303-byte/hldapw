@@ -1,7 +1,7 @@
 <?php
 session_start();
 include '../functions/functions.php';
-$dataproduk = query("SELECT *FROM pesanan ORDER BY tanggal DESC");
+$dataproduk = query("SELECT pesanan.idproduk, produk.namaproduk, produk.harga, pesanan.tanggal, pesanan.hargajual, pesanan.jumlah FROM produk INNER JOIN pesanan ON produk.id=pesanan.idproduk");
 if (isset($_POST["submit"])) {
 
   //Cek apakah data berhasil ditambahkan atau tidak
@@ -202,7 +202,7 @@ if ($_SESSION['nama'] != "") {
       <form action="" method="post">
         <div class="modal-body">
           <input type="text" class="form-control mt-2" name="hargajual" placeholder="Harga Jual">
-          <input type="text" class="form-control mt-2" name="hargajual" placeholder="Harga Jual">
+          <input type="text" class="form-control mt-2" name="laba" placeholder="Laba">
           
           <?php
             $no=0;
@@ -214,10 +214,10 @@ if ($_SESSION['nama'] != "") {
             }
             echo '</select>';
             ?>
-            
-          
-
         </div>
+        <input type="num" class="form-control mt-2" name="jumlah" placeholder="Jumlah Order">
+
+
 
         <!-- Modal footer -->
         <div class="modal-footer">
