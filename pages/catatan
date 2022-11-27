@@ -1,0 +1,11 @@
+ <select name="id" id="id">
+            <?php
+            $sql=mysqli_query("SELECT pesanan.idproduk, produk.namaproduk FROM produk INNER JOIN pesanan ON produk.id=pesanan.idproduk;");
+            while($data = mysqli_fetch_array($sql)){
+            ?>
+            <option value="<?=$data['id']?>"><?=$data['id']?></option>
+            <?php
+            }
+            ?>
+
+          </select>
