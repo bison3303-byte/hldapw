@@ -60,11 +60,9 @@ function updateData($data)
   $tanggal = date('Y-m-d');
 
   //query insert data
-<<<<<<< HEAD
-  $query = "UPDATE produk SET          
-=======
+ 
   $query = "UPDATE produk SET 
->>>>>>> c36e954cf9239659d71913ea930eb69d1a5d2ab0
+
             namaproduk = '$namaproduk',
             deskripsi = '$deskripsi',
             harga = '$harga',
