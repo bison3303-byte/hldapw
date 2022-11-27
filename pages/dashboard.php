@@ -223,10 +223,6 @@ $data_tahun_ini = get_tahun_hari_ini();
 
     <!-- awal table rekap barang -->
 
-<<<<<<< HEAD
-    
-=======
->>>>>>> c36e954cf9239659d71913ea930eb69d1a5d2ab0
     <footer class="footer pt-3  ">
       <div class="container-fluid">
         <div class="row align-items-center justify-content-lg-between">
