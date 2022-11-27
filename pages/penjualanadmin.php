@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <table>
+<table>
     <tr>
         <td>No</td>
         <td>Barang</td>
@@ -28,3 +28,23 @@
 
 
     </table>
+    <?php
+    
+    $data = mysqli_query($conn, "SELECT *FROM pesanan");
+    $hasil = 0;
+    while($tampil = mysqli_fetch_array($data)){
+        $hasil += $tampil["total"];
+    ?>
+    <tr>
+        <td>Rp. <?php echo number_format($tampil["total"]); ?> </td>
+    </tr>
+    <?php } ?> 
+    <tr>
+        <td>Total</td>
+        <td><?php echo $hasil; ?></td>
+
+    </tr>
+
+
+</body>
+</html>

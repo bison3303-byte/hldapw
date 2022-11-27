@@ -201,24 +201,20 @@ if ($_SESSION['nama'] != "") {
 
       <form action="" method="post">
         <div class="modal-body">
-          <input type="text" class="form-control mt-2" name="hargajual" placeholder="Harga Jual">
-          <input type="text" class="form-control mt-2" name="laba" placeholder="Laba">
-          <?php
+        <?php
             $no=0;
             $hasil=mysqli_query($conn, "SELECT *FROM produk ORDER BY namaproduk");
             echo '<select name="idproduk" class="form-control mt-2" required>';
-            echo '<option value="">...</option>';
+            echo '<option value="">Pilih Produk</option>';
             while($rowbar=mysqli_fetch_array($hasil)){
-                echo '<option value="'.$rowbar['id'].'">'.$rowbar['namaproduk'].'-'.$rowbar['harga'].'</option>';   
+                echo '<option value="'.$rowbar['id'].'">'.$rowbar['namaproduk'].' - '.$rowbar['harga'].'</option>';   
             }
             echo '</select>';
             ?>
+          <input type="text" class="form-control mt-2" name="hargajual" placeholder="Harga Jual">
+          <input type="text" class="form-control mt-2" name="laba" placeholder="Laba">
             <input type="num" class="form-control mt-2" name="jumlah" placeholder="Jumlah Order">
-
         </div>
-
-
-
         <!-- Modal footer -->
         <div class="modal-footer">
           <button type="submit" class="btn btn-success" data-bs-dismiss="modal" name="submit">Input</button>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 include '../functions/functions.php';
-$dataproduk = query("SELECT pesanan.idproduk, produk.namaproduk, produk.harga, pesanan.tanggal, pesanan.hargajual, pesanan.jumlah FROM produk INNER JOIN pesanan ON produk.id=pesanan.idproduk ORDER BY tanggal");
+$dataproduk = query("SELECT pesanan.idproduk, produk.namaproduk, produk.harga, pesanan.tanggal, pesanan.hargajual, pesanan.jumlah, pesanan.total FROM produk INNER JOIN pesanan ON produk.id=pesanan.idproduk ORDER BY tanggal");
 if (isset($_POST["submit"])) {
 
   //Cek apakah data berhasil ditambahkan atau tidak
@@ -10,7 +10,7 @@ if (isset($_POST["submit"])) {
     <script>
             alert('data berhasil ditambahkan!');
         document.location.href='datapesanan.php';
-    </script>
+    </script> 
     ";
   } else {
     echo "
@@ -78,7 +78,7 @@ if ($_SESSION['nama'] != "") {
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Halaman</a></li>
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="">Halaman</a></li>
             <li class="breadcrumb-item text-sm text-white active" aria-current="page">Stok</li>
           </ol>
           <h6 class="font-weight-bolder text-white mb-0">Data Pesanan</h6>
@@ -139,14 +139,13 @@ if ($_SESSION['nama'] != "") {
         <tr>
         <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">ID Produk</th>
         <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Nama</th>
-          <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Harga Awal</th>
           <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Harga Jual</th>
-          <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Jumlah</th>
+          <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Jumlah Order</th>
+          <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Total</th>
           <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Tanggal</th>
         </tr>
       </thead>
       <tbody>
-       
         <?php foreach ($dataproduk as $row) :  ?>
           <tr>
               <td class="align-middle text-center">
@@ -154,35 +153,44 @@ if ($_SESSION['nama'] != "") {
               </td>
               <td class="align-middle text-center">
                 <span class="text-secondary font-weight-bold"><?= $row["namaproduk"] ?></span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary font-weight-bold"><?= $row["harga"] ?></span>
-              </td>   
+              </td>  
               <td class="align-middle text-center">
                 <span class="text-secondary font-weight-bold"><?= $row["hargajual"] ?></span>
               </td>   
-            
               <td class="align-middle text-center">
                 <span class="text-secondary font-weight-bold"><?= $row["jumlah"] ?></span>
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-secondary font-weight-bold"><?= $row["total"] ?></span>
               </td>
               <td class="align-middle text-center">
                 <span class="text-secondary font-weight-bold"><?php $date =  date_create($row["tanggal"]); echo date_format($date, "d-m-Y"); ?></span>
               </td>
               </tr>
               </tbody>
-              
             <?php endforeach; ?>
             </table>
             </div>
+
 
           </div>
         </div>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-      Input Pesanan Baru
-    </button>
-
+    <table class="table table-hover">
+    <?php
+    $data = mysqli_query($conn, "SELECT *FROM pesanan");
+    $hasil = 0;
+    while($tampil = mysqli_fetch_array($data)){
+        $hasil += $tampil["total"];
+    ?>
+    <?php } ?> 
+    <tr>
+        <td><b>Total Pendapatan &nbsp; &emsp; &emsp; &emsp; &nbsp;</b></td>
+        <td><b><?php echo $hasil; ?></b></td>
+    </tr>
+    </table>  
+    <!-- end table -->
     <footer class="footer pt-3  ">
       <div class="container-fluid">
         <div class="row align-items-center justify-content-lg-between">

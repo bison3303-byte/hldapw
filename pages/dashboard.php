@@ -237,10 +237,6 @@ foreach ($penjualan as $data) {
         <div class="card z-index-2 h-100">
           <div class="card-header pb-0 pt-3 bg-transparent">
             <h6 class="text-capitalize">Grafik Penjualan</h6>
-            <!-- <p class="text-sm mb-0">
-                <i class="fa fa-arrow-up text-success"></i>
-                <span class="font-weight-bold">4% more</span> in 2021
-              </p> -->
           </div>
           <div class="card-body p-3">
             <div class="chart">
@@ -250,7 +246,9 @@ foreach ($penjualan as $data) {
         </div>
       </div>
     </div>
+
     <!-- awal table rekap barang -->
+
     
     <footer class="footer pt-3  ">
       <div class="container-fluid">
