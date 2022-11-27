@@ -14,6 +14,18 @@ if ($_SESSION['nama'] != "") {
   header("location: login.php");
 }
 
+$penjualan = query("SELECT * FROM `penjualan`");
+
+$hasilpenjualan = "";
+$bulan = "";
+foreach ($penjualan as $data) {
+  $dataBulan = $data['bulan'];
+  $dataHasilPenjualan = $data['hasilpenjualan'];
+
+  $hasilpenjualan .= " '$dataHasilPenjualan',";
+  $bulan .= " '$dataBulan',";
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +55,7 @@ if ($_SESSION['nama'] != "") {
   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html " target="_blank">
+      <a class="navbar-brand m-0" href="dashboard.php" target="_blank">
         <img src="../assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
         <span class="ms-1 font-weight-bold">PT BATIK MUTIARA</span>
       </a>
@@ -53,7 +65,7 @@ if ($_SESSION['nama'] != "") {
     // cek apakah yang mengakses halaman ini sudah login
     if ($level == 'admin') {
       include 'sidenavigationadmin.php';
-    } else if($level == 'kasir') {
+    } else if ($level == 'kasir') {
       include 'sidenavigationkasir.php';
     } else {
       include 'sidenavigationpelanggan.php';
@@ -116,7 +128,10 @@ if ($_SESSION['nama'] != "") {
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Penjualan Hari Ini</p>
                     <h5 class="font-weight-bolder">
-                      $53,000
+                      <?php
+                      echo "halo halo"
+
+                      ?>
                     </h5>
                     <p class="mb-0">
                       <span class="text-success text-sm font-weight-bolder">+55%</span>
@@ -151,6 +166,7 @@ if ($_SESSION['nama'] != "") {
                   </div>
                 </div>
                 <div class="col-4 text-end">
+
                   <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
                     <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
                   </div>
@@ -158,14 +174,62 @@ if ($_SESSION['nama'] != "") {
               </div>
             </div>
           </div>
-
-
-
-
-
-
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Penjualan Hari Ini</p>
+                    <h5 class="font-weight-bolder">
+                      <?php echo "halo halo"
+                      ?>
+                    </h5>
+                    <p class="mb-0">
+                      <span class="text-success text-sm font-weight-bolder">+55%</span>
+                      since yesterday
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Penjualan Hari Ini</p>
+                    <h5 class="font-weight-bolder">
+                      <?php
+                      echo "halo halo"
+
+                      ?>
+                    </h5>
+                    <p class="mb-0">
+                      <span class="text-success text-sm font-weight-bolder">+55%</span>
+                      since yesterday
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="row mt-4">
         <!-- enable for full width graph -->
@@ -187,9 +251,6 @@ if ($_SESSION['nama'] != "") {
       </div>
 
     </div>
-
-
-
     <footer class="footer pt-3  ">
       <div class="container-fluid">
         <div class="row align-items-center justify-content-lg-between">
@@ -236,7 +297,7 @@ if ($_SESSION['nama'] != "") {
     new Chart(ctx1, {
       type: "line",
       data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        labels: [<?= $bulan; ?>],
         datasets: [{
           label: "Penjualan",
           tension: 0.4,
@@ -246,7 +307,7 @@ if ($_SESSION['nama'] != "") {
           backgroundColor: gradientStroke1,
           borderWidth: 3,
           fill: true,
-          data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+          data: [<?= $hasilpenjualan; ?>],
           maxBarThickness: 6
 
         }],

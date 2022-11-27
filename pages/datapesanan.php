@@ -135,7 +135,7 @@ if ($_SESSION['nama'] != "") {
             <?php
             if ($level == 'admin') {
               include 'adminpesanan.php';
-            } else if($level == 'kasir') {
+            } else if ($level == 'kasir') {
               include 'kasirpesanan.php';
             } else {
               include 'sidenavigationpelanggan.php';
@@ -203,6 +203,7 @@ if ($_SESSION['nama'] != "") {
         <div class="modal-body">
           <input type="text" class="form-control mt-2" name="hargajual" placeholder="Harga Jual">
           <input type="text" class="form-control mt-2" name="laba" placeholder="laba">
+<<<<<<< HEAD
           <select name="produk" id="produk" class="form-control mt-2">
             <?php
             $sql="SELECT pesanan.idproduk, produk.namaproduk FROM produk INNER JOIN pesanan ON produk.id=pesanan.idproduk";
@@ -214,6 +215,17 @@ if ($_SESSION['nama'] != "") {
             }
             ?>
 
+=======
+
+          <select name="idproduk">
+            <?php
+            $query = mysqli_query($conn, "SELECT pesanan.idproduk, produk.namaproduk FROM produk INNER JOIN pesanan ON produk.id=pesanan.idproduk;");
+            while ($data = mysqli_fetch_array($query)) {
+              $id = $data['id'];
+            }
+            ?>
+            <option value="<?= $query["id"] ?>"></option>
+>>>>>>> 33a11ef92f4eeaf880cfd7aa639545d09f951b3b
           </select>
           
           

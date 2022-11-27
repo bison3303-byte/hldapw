@@ -132,7 +132,7 @@ if ($_SESSION['nama'] != "") {
             <div class="card-header pb-0">
               <h6>Data Produk</h6>
             </div>
-            <div class="card-body px-0 pt-0 pb-2">
+            <div class="card-body pt-0 pb-2">
               <div class="table-responsive p-0">
                 <table class="table align-items-center mb-0">
                   <thead>
@@ -143,14 +143,14 @@ if ($_SESSION['nama'] != "") {
                       <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Harga</th>
                       <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">Stok Barang</th>
                       <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">Tanggal</th>
-                      
+
                     </tr>
                   </thead>
                   <tbody>
                     <?php $i = 1; ?>
                     <?php foreach ($dataproduk as $row) :  ?>
                       <tr>
-                        <td>
+                        <td class="text-center">
                           <div class="d-flex flex-column justify-content-center">
                             <h5 class="mb-0 text-sm"><?= $i; ?></h5>
                           </div>
@@ -169,19 +169,19 @@ if ($_SESSION['nama'] != "") {
                 <span class="text-secondary font-weight-bold"><?= $row["stok"] ?></span>
               </td>
               <td class="align-middle text-center">
-                <span class="text-secondary font-weight-bold"><?= $row["tanggal"] ?></span>
+                <span class="text-secondary font-weight-bold"><?php $date =  date_create($row["tanggal"]); echo date_format($date, "d-m-Y"); ?></span>
               </td>
               </tr>
               </tbody>
               <?php $i++; ?>
-              <?php endforeach; ?>
-              </table>
+            <?php endforeach; ?>
+            </table>
             </div>
           </div>
         </div>
       </div>
     </div>
-   
+
 
     <footer class="footer pt-3  ">
       <div class="container-fluid">

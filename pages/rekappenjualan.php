@@ -132,26 +132,25 @@ if ($_SESSION['nama'] != "") {
             <div class="card-header pb-0">
               <h6>Data Produk</h6>
             </div>
-            <div class="card-body px-0 pt-0 pb-2">
+            <div class="card-body pt-0 pb-2">
               <div class="table-responsive p-0">
                 <table class="table align-items-center mb-0">
-                <thead>
+                  <thead>
                     <tr>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id Barang</th>
-                    <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Harga Jual</th>
-                    <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Laba</th>
-                    <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Tanggal</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id Barang</th>
+                      <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Harga Jual</th>
+                      <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Laba</th>
+                      <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Tanggal</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php $i = 1; ?>
                     <?php foreach ($dataproduk as $row) :  ?>
                       <tr>
-                        <td>
+                        <td class="text-center">
                           <div class="d-flex flex-column justify-content-center">
                             <h5 class="mb-0 text-sm"><?= $i; ?></h5>
                           </div>
-                        </div>
                         </td>
                         <td class="align-middle text-center">
                           <span class="text-secondary font-weight-bold"><?= $row["hargajual"] ?></span>
@@ -160,37 +159,38 @@ if ($_SESSION['nama'] != "") {
                           <span class="text-secondary font-weight-bold"><?= $row["laba"] ?></span>
                         </td>
                         <td class="align-middle text-center">
-                          <span class="text-secondary font-weight-bold"><?= $row["tanggal"] ?></span>
+                          <span class="text-secondary font-weight-bold"><?php $date =  date_create($row["tanggal"]);
+                                                                        echo date_format($date, "d-m-Y"); ?></span>
                         </td>
-                        </tr>
-                        </tbody>
-                        <?php $i++; ?>
-                        <?php endforeach; ?>
-              </table>
+                      </tr>
+                  </tbody>
+                  <?php $i++; ?>
+                <?php endforeach; ?>
+                </table>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-   
 
-    <footer class="footer pt-3  ">
-      <div class="container-fluid">
-        <div class="row align-items-center justify-content-lg-between">
-          <div class="col-lg-6 mb-lg-0 mb-4">
-            <div class="copyright text-center text-sm text-muted text-lg-start">
-              © <script>
-                document.write(new Date().getFullYear())
-              </script>,
-              made with <i class="fa fa-heart"></i> by
-              <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Kelompok 4</a>
-              for a better web.
+
+      <footer class="footer pt-4">
+        <div class="container-fluid">
+          <div class="row align-items-center justify-content-lg-between">
+            <div class="col-lg-6 mb-lg-0 mb-4">
+              <div class="copyright text-center text-sm text-muted text-lg-start">
+                © <script>
+                  document.write(new Date().getFullYear())
+                </script>,
+                made with <i class="fa fa-heart"></i> by
+                <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Kelompok 4</a>
+                for a better web.
+              </div>
             </div>
-          </div>
 
+          </div>
         </div>
-      </div>
-    </footer>
+      </footer>
     </div>
   </main>
 
@@ -231,12 +231,11 @@ if ($_SESSION['nama'] != "") {
           <select name="idproduk">
             <?php
             $query = mysqli_query($conn, "SELECT *FROM produk");
-            while($data = mysqli_fetch_array($query)){
+            while ($data = mysqli_fetch_array($query)) {
               $idproduk = $data['idproduk'];
-
             }
             ?>
-            <option value="<?=$id;?>"></option>
+            <option value="<?= $id; ?>"></option>
           </select>
           <input type="hidden" class="form-control mt-2" name="tanggal" placeholder="tanggal">
         </div>
