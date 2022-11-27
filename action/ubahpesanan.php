@@ -97,15 +97,22 @@ if ( isset($_POST["submit"])) {
                   <div class="mb-3">
                     <input type="text" autocomplete="off" class="form-control" placeholder="Deskripsi" name="laba" aria-label="Name" value="<?= $dataproduk["laba"]; ?>"/>
                   </div>
+                  
+                  <div class="mb-3">
+                  <?php
+                    $no=0;
+                    $hasil=mysqli_query($conn, "SELECT *FROM produk");
+                    echo '<select name="idproduk" class="form-control mt-2" required>';
+                    echo '<option value="">Pilih Produk</option>';
+                    while($rowbar=mysqli_fetch_array($hasil)){
+                        echo '<option value="'.$rowbar['id'].'">'.$rowbar['namaproduk'].'-'.$rowbar['idproduk'].'</option>';   
+                    }
+                    echo '</select>';
+                    ?>
+                  </div>
                   <div class="mb-3">
                     <input type="hidden" autocomplete="off" class="form-control" placeholder="Deskripsi" name="tanggal" aria-label="Name" value="<?= $dataproduk["tanggal"]; ?>"/>
                   </div>
-                  <div class="mb-3">
-                    <input type="text" autocomplete="off" name="idproduk" class="form-control" placeholder="Harga Produk" aria-label="harga" value="<?= $dataproduk["idproduk"]; ?>"/>
-                  </div>
-                
-                  
-                  
                   <div class="text-center">
                     <button type="submit" name="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Update Pesanan</button>
                   </div>

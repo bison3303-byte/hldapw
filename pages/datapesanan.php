@@ -203,7 +203,7 @@ if ($_SESSION['nama'] != "") {
         <div class="modal-body">
           <input type="text" class="form-control mt-2" name="hargajual" placeholder="Harga Jual">
           <input type="text" class="form-control mt-2" name="hargajual" placeholder="Harga Jual">
-          <div >
+          
           <?php
             $no=0;
             $hasil=mysqli_query($conn, "SELECT *FROM produk ORDER BY namaproduk");
@@ -214,7 +214,7 @@ if ($_SESSION['nama'] != "") {
             }
             echo '</select>';
             ?>
-            </div>
+            
           
 
         </div>

@@ -6,6 +6,7 @@
           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder ">ID </th>
           <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Harga Jual</th>
           <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Laba</th>
+          <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Id Produk</th>
           <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Tanggal</th>
           <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Aksi</th>
         </tr>
@@ -25,6 +26,9 @@
               </td>
               <td class="align-middle text-center">
                 <span class="text-secondary font-weight-bold"><?= $row["laba"] ?></span>
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-secondary font-weight-bold"><?= $row["idproduk"] ?></span>
               </td>
               <td class="align-middle text-center">
                 <span class="text-secondary font-weight-bold"><?php $date =  date_create($row["tanggal"]); echo date_format($date, "d-m-Y"); ?></span>
