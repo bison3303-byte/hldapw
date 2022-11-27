@@ -26,6 +26,10 @@ foreach ($penjualan as $data) {
   $bulan .= " '$dataBulan',";
 }
 
+$data_hari_ini = get_data_hari_ini();
+$data_bulan_ini = get_bulan_hari_ini();
+$data_tahun_ini = get_tahun_hari_ini();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -119,7 +123,7 @@ foreach ($penjualan as $data) {
     </nav>
     <!-- End Navbar -->
     <div class="container-fluid py-4">
-      <div class="row">
+      <div class="row justify-content-md-center">
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-body p-3">
@@ -127,15 +131,13 @@ foreach ($penjualan as $data) {
                 <div class="col-8">
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Penjualan Hari Ini</p>
-                    <h5 class="font-weight-bolder">
-                      <?php
-                      echo "halo halo"
-
-                      ?>
-                    </h5>
-                    <p class="mb-0">
-                      <span class="text-success text-sm font-weight-bolder">+55%</span>
-                      since yesterday
+                    <p class="mb-0 mt-2">
+                      <span class="text-primary text-sm font-weight-bolder">Terjual</span>
+                      <?= isset($data_hari_ini['terjual']) ? $data_hari_ini['terjual'] : "Kosong" ?>
+                    </p>
+                    <p class="mb-0 mt-2">
+                      <span class="text-primary text-sm font-weight-bolder">Sisa</span>
+                      <?= isset($data_hari_ini['sisa']) ? $data_hari_ini['sisa'] : "Kosong" ?>
                     </p>
                   </div>
                 </div>
@@ -149,32 +151,6 @@ foreach ($penjualan as $data) {
           </div>
         </div>
 
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Penjualan Minggu Ini</p>
-                    <h5 class="font-weight-bolder">
-                      +3,462
-                    </h5>
-                    <p class="mb-0">
-                      <span class="text-danger text-sm font-weight-bolder">-2%</span>
-                      since last quarter
-                    </p>
-                  </div>
-                </div>
-                <div class="col-4 text-end">
-
-                  <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
-                    <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-body p-3">
@@ -182,13 +158,13 @@ foreach ($penjualan as $data) {
                 <div class="col-8">
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Penjualan Bulan Ini</p>
-                    <h5 class="font-weight-bolder">
-                      <?php echo "halo halo"
-                      ?>
-                    </h5>
-                    <p class="mb-0">
-                      <span class="text-success text-sm font-weight-bolder">+55%</span>
-                      since yesterday
+                    <p class="mb-0 mt-2">
+                      <span class="text-primary text-sm font-weight-bolder">Terjual</span>
+                      <?= isset($data_bulan_ini['terjual']) ? $data_bulan_ini['terjual'] : "Kosong" ?>
+                    </p>
+                    <p class="mb-0 mt-2">
+                      <span class="text-primary text-sm font-weight-bolder">Sisa</span>
+                      <?= isset($data_bulan_ini['sisa']) ? $data_bulan_ini['sisa'] : "Kosong" ?>
                     </p>
                   </div>
                 </div>
@@ -208,16 +184,14 @@ foreach ($penjualan as $data) {
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Total produk terjual</p>
-                    <h5 class="font-weight-bolder">
-                      <?php
-                      echo "halo halo"
-
-                      ?>
-                    </h5>
-                    <p class="mb-0">
-                      <span class="text-success text-sm font-weight-bolder">+55%</span>
-                      since yesterday
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Penjualan Tahun</p>
+                    <p class="mb-0 mt-2">
+                      <span class="text-primary text-sm font-weight-bolder">Terjual</span>
+                      <?= isset($data_tahun_ini['terjual']) ? $data_tahun_ini['terjual'] : "Kosong" ?>
+                    </p>
+                    <p class="mb-0 mt-2">
+                      <span class="text-primary text-sm font-weight-bolder">Sisa</span>
+                      <?= isset($data_tahun_ini['sisa']) ? $data_tahun_ini['sisa'] : "Kosong" ?>
                     </p>
                   </div>
                 </div>
@@ -251,7 +225,7 @@ foreach ($penjualan as $data) {
       </div>
     </div>
     <!-- awal table rekap barang -->
-    
+
     <footer class="footer pt-3  ">
       <div class="container-fluid">
         <div class="row align-items-center justify-content-lg-between">
