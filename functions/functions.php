@@ -27,12 +27,13 @@ function tambahData($data)
   $deskripsi = htmlspecialchars($data["deskripsi"]);
   $harga = htmlspecialchars($data["harga"]);
   $stok = htmlspecialchars($data["stok"]);
+  $tanggal = date('Y-m-d');
 
 
   //query insert data
   $query = "INSERT INTO produk
         VALUES
-        ('', '$nama', '$deskripsi', '$harga', '$stok')
+        ('', '$nama', '$deskripsi', '$harga', '$stok', '$tanggal')
         ";
   mysqli_query($conn, $query);
 
@@ -56,6 +57,8 @@ function updateData($data)
   $deskripsi = htmlspecialchars($data["deskripsi"]);
   $harga = htmlspecialchars($data["harga"]);
   $stok = htmlspecialchars($data["stok"]);
+  $tanggal = date('Y-m-d');
+
 
   //query insert data
   $query = "UPDATE produk SET 
@@ -153,13 +156,13 @@ function tambahDataPesanan($data)
   $laba = htmlspecialchars($data["laba"]);
   $tanggal = ($data["tanggal"]);
   $idproduk = htmlspecialchars($data["idproduk"]);
-
+  $tanggal = date('Y-m-d');
 
 
   //query insert data
   $query = "INSERT INTO pesanan
        VALUES
-       ('', '$harga', ' $laba', ' $tanggal', '$idproduk')
+       ('', '$harga', '$laba', '$idproduk', '$tanggal')
        ";
   mysqli_query($conn, $query);
 

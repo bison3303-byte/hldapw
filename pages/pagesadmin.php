@@ -3,7 +3,7 @@
     <table class="table align-items-center mb-0">
       <thead>
         <tr>
-          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
+          <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">ID</th>
           <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Nama Produk</th>
           <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Deskrispi</th>
           <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Harga</th>
@@ -34,13 +34,11 @@
               <span class="text-secondary font-weight-bold"><?= $row["stok"] ?></span>
             </td>
             <td class="align-middle text-center">
-              <span class="text-secondary font-weight-bold"><?php $date =  date_create($row["tanggal"]);
-                                                            echo date_format($date, "d-m-Y"); ?></span>
+              <span class="text-secondary font-weight-bold"><?= $row["tanggal"] ?></span>
             </td>
             <td class="align-middle text-center">
               <a href="../action/ubah.php?id=<?= $row["id"] ?>" class="btn btn-danger btn-sm">Ubah</a>
               <a href="../action/hapus.php?id=<?= $row["id"] ?>" class="btn btn-success btn-sm" onclick="return confirm ('Anda yakin ingin menghapus data?');">Hapus</a>
-
             </td>
           </tr>
       </tbody>

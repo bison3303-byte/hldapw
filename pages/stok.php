@@ -149,6 +149,8 @@ if ($_SESSION['nama'] != "") {
     <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
       Input Barang Baru
     </button>
+    <a href="detailproduk.php" class="btn btn-info">Detail Produk</a>
+
 
     <footer class="footer pt-3  ">
       <div class="container-fluid">

@@ -1,26 +1,8 @@
 <?php
 session_start();
 include '../functions/functions.php';
-$dataproduk = query("SELECT *FROM pesanan ORDER BY tanggal DESC");
-if (isset($_POST["submit"])) {
+$dataproduk = query("SELECT *FROM produk ORDER BY tanggal DESC");
 
-  //Cek apakah data berhasil ditambahkan atau tidak
-  if (tambahDataPesanan($_POST) > 0) {
-    echo "
-    <script>
-            alert('data berhasil ditambahkan!');
-        document.location.href='datapesanan.php';
-    </script>
-    ";
-  } else {
-    echo "
-    <script>
-            alert('data gagal ditambahkan!');
-        document.location.href='datapesanan.php';
-    </script>
-    ";
-  }
-}
 
 if ($_SESSION['nama'] != "") {
   $username = $_SESSION['username'];
@@ -79,9 +61,9 @@ if ($_SESSION['nama'] != "") {
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Halaman</a></li>
-            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Stok</li>
+            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Detail Produks</li>
           </ol>
-          <h6 class="font-weight-bolder text-white mb-0">Data Pesanan</h6>
+          <h6 class="font-weight-bolder text-white mb-0">Detail Produk</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -90,7 +72,6 @@ if ($_SESSION['nama'] != "") {
                 <button type="submit" name="cari" class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></button>
                 <input type="text" class="form-control" placeholder="Search..." autocomplete="off" name="keyword" autofocus>
               </div>
-
             </form>
           </div>
           <ul class="navbar-nav  justify-content-end">
@@ -130,24 +111,47 @@ if ($_SESSION['nama'] != "") {
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
-              <h6>Data Produk</h6>
+              <h6>Detail Produk</h6>
             </div>
-            <?php
-            if ($level == 'admin') {
-              include 'adminpesanan.php';
-            } else if ($level == 'kasir') {
-              include 'kasirpesanan.php';
-            } else {
-              include 'sidenavigationpelanggan.php';
-            }
-            ?>
+            <!-- tabel detail produk -->
+            <div class="card-body pt-0 pb-2">
+  <div class="table-responsive p-0">
+    <table class="table align-items-center mb-0">
+      <thead>
+        <tr>
+          <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">IdProduk</th>
+          <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Nama Barang</th>
+          <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Harga Barang</th>
+
+        </tr>
+      </thead>
+      <tbody>
+     
+        <?php foreach ($dataproduk as $row) :  ?>
+          <tr>
+            <td class="align-middle text-center">
+              <span class="text-secondary font-weight-bold"><?= $row["id"] ?></span>
+            </td>
+            <td>
+              <p class="align-middle text-center "><?= $row["namaproduk"] ?></p>
+            </td>
+            <td class="align-middle text-center">
+              <span class="text-secondary font-weight-bold"><?= $row["harga"] ?></span>
+            </td>
+            <td class="align-middle text-center">
+            </td>
+          </tr>
+      </tbody>
+    <?php endforeach; ?>
+    </table>
+  </div>
+
           </div>
         </div>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-      Input Pesanan Baru
-    </button>
+    <a href="datapesanan.php" class="btn btn-secondary">Kembali</a>
+
 
     <footer class="footer pt-3  ">
       <div class="container-fluid">
@@ -188,46 +192,6 @@ if ($_SESSION['nama'] != "") {
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
 </body>
-<!-- The Modal -->
-<div class="modal fade" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Tambah Pesanan Baru</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <form action="" method="post">
-        <div class="modal-body">
-          <input type="text" class="form-control mt-2" name="hargajual" placeholder="Harga Jual">
-          <input type="text" class="form-control mt-2" name="hargajual" placeholder="Harga Jual">
-          <div >
-          <?php
-            $no=0;
-            $hasil=mysqli_query($conn, "SELECT *FROM produk ORDER BY namaproduk");
-            echo '<select name="idproduk" class="form-control mt-2" required>';
-            echo '<option value="">...</option>';
-            while($rowbar=mysqli_fetch_array($hasil)){
-                echo '<option value="'.$rowbar['id'].'">'.$rowbar['namaproduk'].'</option>';   
-            }
-            echo '</select>';
-            ?>
-            </div>
-          
-
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-success" data-bs-dismiss="modal" name="submit">Input</button>
-          <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
 
 
 </html>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 include '../functions/functions.php';
-$dataproduk = query("SELECT *FROM pesanan");
+$dataproduk = query("SELECT *FROM pesanan ORDER BY tanggal DESC");
 if (isset($_POST["submit"])) {
 
   //Cek apakah data berhasil ditambahkan atau tidak

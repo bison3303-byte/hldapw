@@ -18,25 +18,25 @@
               <div class="d-flex flex-column justify-content-center">
                 <h5 class="mb-0 text-sm"><?= $i; ?></h5>
               </div>
-  </div>
-  </td>
-  <td class="align-middle text-center">
-    <span class="text-secondary font-weight-bold"><?= $row["hargajual"] ?></span>
-  </td>
-  <td class="align-middle text-center">
-    <span class="text-secondary font-weight-bold"><?= $row["laba"] ?></span>
-  </td>
-  <td class="align-middle text-center">
-    <span class="text-secondary font-weight-bold"><?php $date =  date_create($row["tanggal"]); echo date_format($date, "d-m-Y"); ?></span>
-  </td>
-  <td class="align-middle text-center">
-    <a href="../action/ubahpesanan.php?id=<?= $row["id"] ?>" class="btn btn-success btn-sm">Ubah</a>
-    <a href="../action/hapuspesanan.php?id=<?= $row["id"] ?>" class="btn btn-danger btn-sm" onclick="return confirm ('Anda yakin ingin menghapus data?');">Hapus</a>
+              </div>
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-secondary font-weight-bold"><?= $row["hargajual"] ?></span>
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-secondary font-weight-bold"><?= $row["laba"] ?></span>
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-secondary font-weight-bold"><?php $date =  date_create($row["tanggal"]); echo date_format($date, "d-m-Y"); ?></span>
+              </td>
+              <td class="align-middle text-center">
+                <a href="../action/ubahpesanan.php?id=<?= $row["id"] ?>" class="btn btn-success btn-sm">Ubah</a>
+                <a href="../action/hapuspesanan.php?id=<?= $row["id"] ?>" class="btn btn-danger btn-sm" onclick="return confirm ('Anda yakin ingin menghapus data?');">Hapus</a>
 
-  </td>
-  </tr>
-  </tbody>
-  <?php $i++; ?>
-<?php endforeach; ?>
-</table>
-</div>
+              </td>
+              </tr>
+              </tbody>
+              <?php $i++; ?>
+            <?php endforeach; ?>
+            </table>
+            </div>
