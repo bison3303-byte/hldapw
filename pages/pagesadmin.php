@@ -6,7 +6,7 @@
           <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">ID</th>
           <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Nama Produk</th>
           <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Deskrispi</th>
-          <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Harga</th>
+          <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Harga Jual Satuan</th>
           <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">Stok Barang</th>
           <th class="text-center text-uppercase text-secondary font-weight-bolder opacity-7">Tanggal</th>
           <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Aksi</th>

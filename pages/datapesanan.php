@@ -1,7 +1,7 @@
 <?php
 session_start();
 include '../functions/functions.php';
-$dataproduk = query("SELECT pesanan.idproduk, produk.namaproduk, produk.harga, pesanan.tanggal, pesanan.hargajual, pesanan.jumlah FROM produk INNER JOIN pesanan ON produk.id=pesanan.idproduk");
+$dataproduk = query("SELECT pesanan.idproduk, produk.namaproduk, pesanan.tanggal, pesanan.hargajual, pesanan.jumlah, pesanan.total FROM produk INNER JOIN pesanan ON produk.id=pesanan.idproduk");
 if (isset($_POST["submit"])) {
 
   //Cek apakah data berhasil ditambahkan atau tidak
@@ -78,7 +78,7 @@ if ($_SESSION['nama'] != "") {
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Halaman</a></li>
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="">Halaman</a></li>
             <li class="breadcrumb-item text-sm text-white active" aria-current="page">Stok</li>
           </ol>
           <h6 class="font-weight-bolder text-white mb-0">Data Pesanan</h6>
@@ -203,19 +203,19 @@ if ($_SESSION['nama'] != "") {
         <div class="modal-body">
           <input type="text" class="form-control mt-2" name="hargajual" placeholder="Harga Jual">
           <input type="text" class="form-control mt-2" name="laba" placeholder="Laba">
-          
           <?php
             $no=0;
             $hasil=mysqli_query($conn, "SELECT *FROM produk ORDER BY namaproduk");
             echo '<select name="idproduk" class="form-control mt-2" required>';
             echo '<option value="">...</option>';
             while($rowbar=mysqli_fetch_array($hasil)){
-                echo '<option value="'.$rowbar['id'].'">'.$rowbar['namaproduk'].'</option>';   
+                echo '<option value="'.$rowbar['id'].'">'.$rowbar['namaproduk'].'-'.$rowbar['harga'].'</option>';   
             }
             echo '</select>';
             ?>
+            <input type="num" class="form-control mt-2" name="jumlah" placeholder="Jumlah Order">
+
         </div>
-        <input type="num" class="form-control mt-2" name="jumlah" placeholder="Jumlah Order">
 
 
 

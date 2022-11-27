@@ -59,10 +59,8 @@ function updateData($data)
   $stok = htmlspecialchars($data["stok"]);
   $tanggal = date('Y-m-d');
 
-
   //query insert data
-  $query = "UPDATE produk SET 
-            
+  $query = "UPDATE produk SET          
             namaproduk = '$namaproduk',
             deskripsi = '$deskripsi',
             harga = '$harga',
@@ -103,10 +101,8 @@ function register($data)
         ";
     return false;
   }
-
   //enskripsi password
   $password = password_hash($password, PASSWORD_DEFAULT);
-
 
   //Tambahkan user baru ke dalam database
   mysqli_query($conn, "INSERT INTO user VALUES('', '$username', '$password')");
@@ -129,13 +125,9 @@ function tambahpelanggan($data)
 {
   global $conn;
   // ambil data dari masing masing elemen dalam form
-
-
   $nama = htmlspecialchars($data["namapelanggan"]);
   $notelp = htmlspecialchars($data["notelp"]);
   $alamat = htmlspecialchars($data["alamat"]);
-
-
 
   //query insert data
   $query = "INSERT INTO pelanggan
@@ -150,26 +142,22 @@ function tambahDataPesanan($data)
 {
   global $conn;
   // ambil data dari masing masing elemen dalam form
-
-
   $harga = htmlspecialchars($data["hargajual"]);
-  $laba = htmlspecialchars($data["laba"]);
-  $tanggal = ($data["tanggal"]);
   $jumlah = ($data["jumlah"]);
   $idproduk = htmlspecialchars($data["idproduk"]);
   $tanggal = date('Y-m-d');
-
+  $total = $jumlah*$harga;
+  
 
   //query insert data
   $query = "INSERT INTO pesanan
        VALUES
-       ('', '$harga', '$laba', '$idproduk', '$tanggal', '$jumlah')
+       ('', '$harga', '$idproduk', '$tanggal', '$jumlah', '$total')
        ";
   mysqli_query($conn, $query);
 
   return mysqli_affected_rows($conn);
 }
-
 
 function updatePesanan($data)
 {
@@ -179,13 +167,15 @@ function updatePesanan($data)
 
   $harga = htmlspecialchars($data["hargajual"]);
   $idproduk = htmlspecialchars($data["idproduk"]);
+  $jumlah = ($data["jumlah"]);
+  $total = $jumlah*$harga;
 
   //query insert data
   $query = "UPDATE pesanan SET 
-            
-        
             hargajual = '$harga',
-            idproduk = '$idproduk'
+            idproduk = '$idproduk',
+            jumlah = '$jumlah',
+            total = '$total'
             WHERE idproduk = $id 
     ";
   mysqli_query($conn, $query);

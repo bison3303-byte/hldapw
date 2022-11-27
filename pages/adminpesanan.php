@@ -5,9 +5,9 @@
         <tr>
         <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">ID Produk</th>
         <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Nama</th>
-          <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Harga Awal</th>
           <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Harga Jual</th>
-          <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Jumlah</th>
+          <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Jumlah Order</th>
+          <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Total</th>
           <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Tanggal</th>
           <th class="text-center text-uppercase text-secondary  font-weight-bolder opacity-7">Aksi</th>
         </tr>
@@ -21,16 +21,15 @@
               </td>
               <td class="align-middle text-center">
                 <span class="text-secondary font-weight-bold"><?= $row["namaproduk"] ?></span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary font-weight-bold"><?= $row["harga"] ?></span>
-              </td>   
+              </td> 
               <td class="align-middle text-center">
                 <span class="text-secondary font-weight-bold"><?= $row["hargajual"] ?></span>
-              </td>   
-            
+              </td>
               <td class="align-middle text-center">
                 <span class="text-secondary font-weight-bold"><?= $row["jumlah"] ?></span>
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-secondary font-weight-bold"><?= $row["total"] ?></span>
               </td>
               <td class="align-middle text-center">
                 <span class="text-secondary font-weight-bold"><?php $date =  date_create($row["tanggal"]); echo date_format($date, "d-m-Y"); ?></span>

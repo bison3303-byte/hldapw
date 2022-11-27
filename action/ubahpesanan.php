@@ -92,7 +92,7 @@ if ( isset($_POST["submit"])) {
                       <input type="hidden" name="idproduk" class="form-control" value="<?= $dataproduk["idproduk"]; ?>" aria-label="id"/>
                     </div>
                     <div class="mb-3">
-                      <input type="text" autocomplete="off" name="hargajual" class="form-control" aria-label="kode" placeholder="Nama Produk" value="<?= $dataproduk["hargajual"]; ?>"/>
+                      <input type="text" autocomplete="off" name="hargajual" class="form-control" aria-label="kode" placeholder="Harga Jual" value="<?= $dataproduk["hargajual"]; ?>"/>
                     </div>
                   <div class="mb-3">
                   <?php
@@ -101,7 +101,7 @@ if ( isset($_POST["submit"])) {
                     echo '<select name="idproduk" class="form-control mt-2" required>';
                     echo '<option value="">Pilih Produk</option>';
                     while($rowbar=mysqli_fetch_array($hasil)){
-                        echo '<option value="'.$rowbar['id'].'">'.$rowbar['namaproduk'].'-'.$rowbar['idproduk'].'</option>';   
+                        echo '<option value="'.$rowbar['id'].'">'.$rowbar['namaproduk'].'-'.$rowbar['harga'].'</option>';   
                     }
                     echo '</select>';
                     ?>
